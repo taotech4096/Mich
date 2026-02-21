@@ -1,0 +1,29 @@
+i was creating this website before, we will use shopify but tell me if something from this developmnet is usefull, relevant or reusable "C:\Users\pinku\Dropbox\Kairos\KairosCommand\SoftwareDevelopment\MitchWeb\yogurt_orders"
+
+Tu proyecto actual: bastante avanzado
+Lo que construiste es una app full-stack completa en Next.js 14 + Prisma + PostgreSQL + shadcn/ui + Tailwind + MercadoPago. Tiene storefront, checkout, suscripciones, admin dashboard con analytics, delivery zones, y más. No es un prototipo — es una app funcional.
+
+Lo que SÍ es reutilizable con Shopify Headless (Hydrogen)
+1. Toda tu librería de componentes UI (~30 archivos shadcn/ui) — Son componentes Radix UI puros (button, dialog, select, card, table, tabs, etc.). Hydrogen usa React, así que estos funcionan tal cual. Solo copias la carpeta components/ui/ y el tailwind.config.ts. Es probablemente lo más valioso del proyecto — te ahorra horas de setup.
+2. Tu design system / brand identity — El globals.css con CSS variables, la paleta indigo-900 + amber + stone, la fuente display para headings, el dark mode setup. Todo esto migra directo a Hydrogen porque es CSS puro + Tailwind.
+3. Los assets en /public/mitch/ — Logo, fotos de producto, og-image. Estos se suben a Shopify como media o se mantienen en el frontend de Hydrogen.
+4. Lógica de delivery (parcial) — La función getNextDeliveryDays() con martes y viernes, getNextSubscriptionDelivery(), y isValidDeliveryZone() son reglas de negocio tuyas que Shopify no tiene nativamente. Las puedes reusar como utilidades en Hydrogen o como metafields + Shopify Functions.
+5. El layout del checkout UX — El flujo de seleccionar dirección → día de entrega → suscripción → método de pago es específico de tu negocio. Shopify's checkout es más genérico. Puedes reusar esta lógica UX como referencia, aunque la implementación cambia con Shopify Checkout Extensions.
+6. El admin dashboard de analytics — Las métricas que muestras (revenue diario/semanal/mensual, pedidos por status, productos populares, suscripciones activas) son útiles como spec funcional. En Shopify headless, los datos vendrían de la Admin API en vez de Prisma, pero las visualizaciones con recharts/chart.js se reusan.
+
+Lo que NO se reutiliza (Shopify lo reemplaza)
+1. Todo el schema de Prisma + PostgreSQL — Esta es la pieza más grande que desaparece. Shopify reemplaza tus modelos de User, Product, Order, Address, Subscription, Category, DeliveryZone, y Settings. Son 10 modelos que Shopify ya tiene como entidades nativas (Customers, Products, Orders, etc.). Esto es lo bueno — ya no mantienes base de datos.
+2. Todas las API routes (/api/*) — Los 16 endpoints (orders, products, customers, subscriptions, payments, analytics, auth, etc.) se reemplazan por Shopify's Storefront API + Admin API. Tu integración de MercadoPago se reemplaza por Shopify Payments (que en México soporta tarjetas + OXXO + SPEI).
+3. Auth (NextAuth + bcrypt + JWT) — Shopify Customer Accounts API reemplaza todo tu sistema de login/signup/session.
+4. El carrito con localStorage — Hydrogen tiene su propio cart hook (useCart()) que se sincroniza con Shopify's Storefront API. Tu CartContext queda obsoleto.
+5. El seed script — Los productos se cargan en el admin de Shopify directamente.
+
+Estrategia de migración recomendada
+En vez de "migrar" archivo por archivo, te recomiendo un approach "cherry-pick and rebuild":
+
+Sprint 0 (1 día): Crea el proyecto Hydrogen, copia los components/ui/, globals.css, tailwind.config.ts, y assets. Tienes tu design system listo.
+Sprint 1 (3-4 días): Construye el storefront con Hydrogen (home, product listing, product detail, cart) usando los data de Shopify's Storefront API. Tus layouts existentes sirven como referencia de UX.
+Sprint 2 (2-3 días): Implementa checkout. Aquí es donde tu lógica de delivery days se convierte en Shopify Functions (delivery customizations). Las suscripciones se manejan con Shopify Subscriptions API.
+Sprint 3 (2 días): El admin dashboard custom ya no es necesario para pedidos/productos (Shopify Admin lo hace). Solo necesitas un dashboard de analytics custom si quieres las métricas específicas de tu negocio que Shopify Analytics no cubre.
+
+Lo que realmente te salvó trabajo con este proyecto es que ya tienes clarísima tu lógica de negocio: días de entrega martes/viernes, zonas de delivery en Puebla/Cholula, frecuencias de suscripción semanal/quincenal/mensual, y todo el flujo de MercadoPago. Eso es conocimiento que se traduce directamente a configuración de Shopify, aunque el código en sí cambia.
