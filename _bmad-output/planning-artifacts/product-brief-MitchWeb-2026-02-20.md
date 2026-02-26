@@ -1,5 +1,7 @@
 ---
-stepsCompleted: [1, 2, 3]
+stepsCompleted: [1, 2, 3, 4, 5, 6]
+workflowComplete: true
+completedDate: 2026-02-25
 inputDocuments:
   - "Reportes de Mercado/REPORTE_ESTRATEGICO_FINAL.md"
   - "Reportes de Mercado/01_consumidor_tendencias.md"
@@ -220,3 +222,240 @@ Reverse engineering from the Year 3 goal of category leadership reveals a clear 
 5. **Steady Volume:** Predictable recurring orders at bulk pricing
 
 *Note: Additional research needed on fitness/keto consumer segment, shopkeeper recommendation dynamics, and Central de Abastos distributor end-customer mapping.*
+
+---
+
+## Success Metrics
+
+### User Success Metrics
+
+These focus on outcomes and behaviors that prove we're delivering real value:
+
+| Metric | What It Measures | Target |
+|---|---|---|
+| **Repeat Purchase Rate** | % of first-time buyers who purchase again within 30 days | >40% by Month 6 of D2C launch |
+| **Purchase Frequency (Heavy Users)** | Weekly containers per loyal customer | 3-5 containers/week (matching current organic demand pattern) |
+| **Subscription Adoption Rate** | % of D2C customers who convert to weekly/biweekly subscription | >25% of active D2C customers by Year 1 |
+| **Subscription Retention** | % of subscribers retained month-over-month | >85% monthly retention |
+| **Net Promoter Score (NPS)** | Willingness to recommend Mich to others | >70 (world-class for food brands) |
+| **Word-of-Mouth Referral Rate** | % of new customers acquired through personal recommendation | Track baseline, maintain >50% (currently dominant channel) |
+| **HORECA Reorder Rate** | % of restaurant trial orders that become recurring | >75% conversion from trial to recurring within 60 days |
+| **Time-to-First-Reorder** | Days between first purchase and second purchase | <14 days for D2C customers |
+
+### Business Objectives
+
+**First 90 Days (Foundation):**
+- Partnership agreement signed and legally binding
+- Kitchen expansion plan in motion (location secured, permits filed)
+- Recipe documentation started (written + video + apprenticeship)
+- Brand identity brief completed, design in progress
+- Business legally constituted, regulatory applications submitted
+- First additional cook hired and training alongside Michel
+
+**Year 1 (Stabilize & Launch):**
+- Production capacity at 1,800L+/week in new kitchen
+- D2C e-commerce live with subscription model
+- Listed on Rappi/Cornershop in launch zones
+- 2-3 active HORECA partnerships
+- Regulatory compliance achieved (registros sanitarios, GS1, NOM)
+- AI marketing automation operational (Ibrahim, social media, WhatsApp)
+- White-label phase-out timeline activated
+
+**Year 2 (Grow & Expand):**
+- Intermediary dependency reduced below 40% of total revenue
+- Premium retail entry (City Market, Fresko, or HEB -- at least 1)
+- Production at 3,000L+/week
+- Michel transitioning to advisory role
+- Labneh in olive oil with za'atar launched as premium SKU
+
+**Year 3 (Lead the Category):**
+- Production at 5,000-8,000L/week
+- Category leader in premium Mediterranean dairy in Mexico
+- D2C subscriptions + premium retail + HORECA as primary channels
+- White-label fully phased out
+
+### Key Performance Indicators
+
+**Revenue & Financial KPIs:**
+
+| KPI | Target (Year 1) | Target (Year 2) | Measurement |
+|---|---|---|---|
+| Monthly Recurring Revenue (D2C subscriptions) | Establish baseline | 30%+ of total revenue | Shopify subscription data |
+| Revenue per channel | Track all channels | D2C + HORECA > intermediary revenue | Channel-level P&L |
+| Gross Margin (D2C) | >60% | >65% | Revenue minus COGS per channel |
+| Gross Margin (HORECA) | >45% | >50% | Bulk pricing minus COGS |
+| Customer Acquisition Cost (CAC) | Establish baseline | Reduce 20% YoY | Marketing spend / new customers |
+| Customer Lifetime Value (CLV) | Establish baseline | CLV:CAC ratio >3:1 | Klaviyo/Vertex AI predictive |
+| Average Order Value (D2C) | >$250 MXN | >$350 MXN | Shopify analytics |
+
+**Production & Operations KPIs:**
+
+| KPI | Target (Year 1) | Target (Year 2) | Measurement |
+|---|---|---|---|
+| Weekly production volume | 1,800L/week | 3,000L/week | Production logs |
+| Production quality consistency | <2% batch rejection | <1% batch rejection | QC process |
+| Trained staff capable of independent production | 1+ beyond Michel | 2+ beyond Michel | Skills assessment |
+| Recipe documentation completeness | 100% written + video | Maintained and updated | Documentation audit |
+| Order fulfillment rate | >95% | >98% | Orders fulfilled on-time / total orders |
+
+**Growth & Brand KPIs:**
+
+| KPI | Target (Year 1) | Target (Year 2) | Measurement |
+|---|---|---|---|
+| Total active D2C customers | Establish baseline | 2x Year 1 | Shopify customer data |
+| HORECA active partnerships | 2-3 | 5-8 | Active recurring orders |
+| Retail points of sale | 5-10 artisanal shops | + 1-2 premium retail chains | Distribution tracking |
+| Social media engagement rate | >5% (premium food benchmark) | Maintain >5% | Buffer/Meta analytics |
+| Earned media mentions | 5+ (food bloggers, press) | 15+ | Media monitoring |
+| Delivery app ratings | >4.7 stars | Maintain >4.7 | Rappi/Cornershop reviews |
+
+**Digital & Automation KPIs (The AI Edge):**
+
+| KPI | Target (Year 1) | Target (Year 2) | Measurement |
+|---|---|---|---|
+| WhatsApp/OpenClaw conversion rate | >15% of conversations to sale | >20% | OpenClaw analytics |
+| Automated reorder rate | Establish baseline | 30%+ of repeat orders via AI prompt | Vertex AI + Shopify |
+| Email flow revenue (Klaviyo) | 20%+ of total D2C revenue | 30%+ | Klaviyo attribution |
+| Content production efficiency | 8-10 hrs/week for full calendar | Maintain or reduce | Time tracking |
+
+---
+
+## MVP Scope
+
+**The MVP is defined as: everything needed to launch the Mich premium D2C brand through Shopify within 2 weeks, while keeping current intermediary operations running and advancing the critical physical foundations in parallel.**
+
+### Core Features
+
+#### A. Digital Platform MVP (MitchWeb -- Shopify Headless, 2-Week Sprint)
+
+**Must-Have for Launch:**
+1. **Shopify Headless Store (Hydrogen/Oxygen)**
+   - Product catalog: Greek Yogurt (250g, 500g, 1kg) + Labneh/Jocoque Seco (200g, 500g) -- all in premium glass containers
+   - Product pages with heritage storytelling, nutritional info (protein, macros, keto-friendly), and clean ingredient list
+   - Subscription model from day 1 (weekly/biweekly delivery options)
+   - One-time purchase option alongside subscriptions
+   - Local delivery zone configuration (Puebla/Cholula initial radius)
+   - Delivery day logic (martes/viernes schedule from existing business rules)
+   - Shop Pay / Shopify Payments integration (tarjetas + OXXO + SPEI)
+   - Mobile-optimized (majority of target audience shops on mobile)
+
+2. **WhatsApp Sales Channel (OpenClaw MVP)**
+   - Mich Sales Bot on WhatsApp Business: answer FAQs, share catalog, generate checkout links via Storefront MCP
+   - Basic order confirmation flow
+   - Escalation to Taotech for complex queries
+
+3. **Basic Marketing Automation**
+   - Klaviyo connected to Shopify: welcome flow, order confirmation, post-purchase follow-up
+   - Social media accounts live (Instagram, TikTok) with initial heritage storytelling content
+   - Buffer configured for scheduled posting
+
+4. **Delivery App Presence**
+   - Listed on Rappi and/or Cornershop in launch zones with glass-container premium SKUs
+
+#### B. Physical Operations MVP (Parallel Track, First 90 Days)
+
+**Must Be In Motion at Shopify Launch:**
+1. **Production Continuity**
+   - Current 600L/week production maintained -- serves both intermediary (plastic) and D2C (glass) channels
+   - Glass container sourcing secured and initial inventory stocked for launch
+   - Premium packaging design ready (labels, brand identity on glass containers)
+   - Clear production allocation: X% for intermediary (plastic), Y% for D2C (glass)
+
+2. **Recipe Documentation (Started, Ongoing)**
+   - Written documentation of core recipes initiated
+   - First video recording sessions of Michel's production process scheduled
+   - First additional cook identified or hired, beginning hands-on training
+
+3. **Brand Identity (Launch-Ready)**
+   - Logo and visual identity finalized for glass packaging and digital presence
+   - Dual messaging framework operational: heritage storytelling + functional nutrition (macros front-of-label)
+   - Brand photography: product shots in glass containers, Michel in production (authentic, not staged)
+
+4. **Cold Chain & Fulfillment**
+   - Local delivery logistics established for D2C orders (Puebla/Cholula radius)
+   - Packaging and insulation solution for refrigerated delivery
+   - Order-to-delivery process documented and tested
+
+**Must Be In Motion Within 90 Days (Not Blocking Launch):**
+5. **Kitchen Expansion**
+   - Location identified, permits filed (licencia de uso de suelo, COFEPRIS, proteccion civil)
+   - Equipment sourced and ordered
+   - Interim capacity solutions explored (double shifts if D2C demand spikes)
+
+6. **Partnership Formalization**
+   - Legal agreement drafted defining roles, decision authority, IP ownership, profit distribution, exit terms
+   - Target: signed within first 30 days
+
+7. **Regulatory Foundation**
+   - Business legally constituted
+   - GS1 barcode applications submitted for all SKUs
+   - Registro sanitario process initiated
+
+#### C. Channel Strategy MVP
+
+| Channel | MVP Status | Packaging | Purpose |
+|---|---|---|---|
+| **Intermediary sales (current)** | Continues as-is | Plastic containers | Revenue bridge, funds operations |
+| **D2C Shopify store** | Launches in 2 weeks | Premium glass containers | Brand building, highest margin, subscription revenue |
+| **Delivery apps (Rappi/Cornershop)** | Launch with or shortly after Shopify | Premium glass containers | D2C extension, reach digital-native consumers |
+| **WhatsApp (OpenClaw)** | Launches with Shopify | Premium glass containers | Conversational commerce, reorders, customer relationship |
+| **HORECA (restaurants)** | Approach 2-3 targets in first 90 days | TBD (bulk/glass) | Brand credibility, B2B volume |
+| **Artisanal shops** | Transition existing to Mich-branded where possible | Premium glass containers | Retail presence, brand validation |
+
+### Out of Scope for MVP
+
+**Explicitly deferred -- not forgotten, just not now:**
+
+| Feature | Why Deferred | When |
+|---|---|---|
+| Premium retail (City Market, Fresko, HEB) | Requires GS1, NOM compliance, production volume, and brand traction | Year 2 |
+| Organic sourcing / certification | Needs production stability first; transparency about current sourcing is the MVP approach | Phase 1.5 |
+| Labneh in olive oil with za'atar SKU | Premium extension once core SKUs are established | Year 1-2 |
+| Greek ice cream and product line extensions | Phase 2 after production foundation is proven | Year 2-3 |
+| Vertex AI predictive models (reorder prediction, churn) | Need purchase history data first; Klaviyo basic flows cover the gap | Month 3-6 |
+| AI agent on Hydrogen storefront (web chat) | WhatsApp is the priority channel; web agent adds complexity | Post-launch Sprint 2-3 |
+| Custom analytics dashboard | Shopify Analytics + Klaviyo cover MVP needs | When data volume justifies it |
+| Multi-city D2C expansion (CDMX) | Requires cold chain logistics beyond Puebla/Cholula | Year 1 after local model is proven |
+| Tastemaker access program | Need brand identity and glass packaging ready first (they are) -- but formal program waits until production can handle demand spikes | Month 2-3 |
+| Full marketing automation (Zapier, Buffer AI, Pippit, multi-agent content) | Start with manual + basic Klaviyo flows; layer automation as content cadence stabilizes | Month 2-4 |
+
+### MVP Success Criteria
+
+**The MVP is validated when these gates are met:**
+
+| Gate | Criteria | Decision |
+|---|---|---|
+| **Product-Market Fit Signal** | >40% repeat purchase rate within 30 days of D2C launch | Scale D2C marketing spend |
+| **Subscription Viability** | >15% of D2C customers convert to subscription within first 2 months | Invest in subscription UX and retention |
+| **Glass Premium Validation** | D2C AOV >$250 MXN and customers reference packaging/presentation positively | Confirm glass-only strategy for premium channels |
+| **Channel Economics** | D2C gross margin >55% after delivery costs | Accelerate white-label phase-out timeline |
+| **Production Capacity Signal** | D2C + delivery app demand approaches 30% of current 600L/week capacity | Trigger kitchen expansion urgency / interim solutions |
+| **WhatsApp Conversion** | >10% of WhatsApp conversations result in a sale | Invest in OpenClaw advanced features |
+| **HORECA Proof** | At least 1 restaurant trial converts to recurring order | Pursue additional HORECA targets |
+
+### Future Vision
+
+**If this is wildly successful, MitchWeb becomes:**
+
+**Year 1-2: The Premium Local Engine**
+- Glass-packaged Mich is the recognized premium artisanal dairy brand in Puebla and CDMX
+- Subscription base provides predictable recurring revenue
+- AI-powered reorder system (Vertex AI + OpenClaw) drives 30%+ of repeat sales automatically
+- HORECA partnerships with 5-8 restaurants, some featuring "made with Mich" on menus
+- Heritage storytelling has generated earned media (food bloggers, press, social media virality)
+- Keto/fitness communities recognize Mich as the clean dairy brand
+- Kitchen at 3,000L+/week with trained staff producing independently
+
+**Year 2-3: Multi-Channel Category Leader**
+- Premium retail presence (City Market, Fresko, HEB) with full regulatory compliance
+- Product line expanded: labneh in olive oil with za'atar, flavored Greek yogurt, tzatziki
+- Organic sourcing transition underway, grass-fed milk partnerships
+- D2C subscriptions + premium retail + HORECA as primary revenue, intermediary fully phased out
+- Michel in advisory role, brand story widely known
+- AI marketing system operating at full sophistication (Vertex AI predictions, multi-agent content, automated campaigns)
+
+**Year 3+: The Vision**
+- 5,000-8,000L/week production across full product line including Greek ice cream
+- Category leader in premium Mediterranean dairy in Mexico
+- The brand that filled the authenticity gap when Libanius went corporate
+- A model for how an artisanal food brand scales with AI-native infrastructure without losing its soul
