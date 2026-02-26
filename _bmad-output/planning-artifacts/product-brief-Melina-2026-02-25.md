@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [1, 2]
+stepsCompleted: [1, 2, 3]
 inputDocuments:
   - "brainstorm-melina-content-ai-suite.md"
   - "product-brief-MitchWeb-2026-02-20.md"
