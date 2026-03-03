@@ -1,9 +1,21 @@
-What's been accomplished:
-  - Loaded 8 input documents (market research, tech architecture, automation guides, migration analysis)
-  - Crafted and refined the Executive Summary and full Core Vision through 4 rounds of advanced elicitation:
-    - First Principles Analysis -- grounded the vision in verified truths
-    - Shark Tank Pitch -- stress-tested financial and operational gaps
-    - Reverse Engineering -- built the 90-day to Year 3 critical path
-    - User Persona Focus Group -- validated dual positioning (heritage + functional nutrition)
+To continue next session, run this command:
 
-  To resume next time: Just run /bmad-bmm-create-product-brief again. The workflow will detect the existing document and pick up where we left off.
+  /bmad-bmm-create-product-brief
+
+  The workflow will automatically:
+  1. Detect the existing document at
+  _bmad-output/planning-artifacts/product-brief-Melina-2026-02-25.md
+  2. See stepsCompleted: [1, 2] in the frontmatter
+  3. Load step-01b-continue and resume from where we left off
+
+  Where you'll pick up:
+  - Steps 1-2 complete (Executive Summary, Core Vision, Platform Potential, Target Users, User
+  Journeys)
+  - Next: Step 3 → Success Metrics — we'll define KPIs, measurable outcomes, and what "Melina is
+  working" looks like
+  - Then: Step 4 → MVP Scope, Step 5 → Risks, Step 6 → Final review
+
+  One thing to note: the frontmatter currently says stepsCompleted: [1, 2] but we actually
+  completed the Target Users step (which is step 3 in the workflow, loaded from step-03-users.md).
+  The continuation logic will pick this up correctly — you selected C to approve the users content,
+   so the next session will proceed to Step 4 (metrics).

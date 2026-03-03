@@ -2,6 +2,7 @@
 stepsCompleted: [1, 2, 3]
 inputDocuments:
   - "brainstorm-melina-content-ai-suite.md"
+  - "brainstorm-melina-remotion-video-engine.md"
   - "product-brief-MitchWeb-2026-02-20.md"
   - "prd.md"
   - "explanation-headless-ecommerce.md"
