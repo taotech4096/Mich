@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MitchWeb - Design Direction Mockups</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C6A855;
+      --gold-light: #E8D5A3;
+      --gold-dark: #8B7332;
+      --cream: #FAF6EE;
+      --cream-dark: #F0E8D8;
+      --dark: #1A1612;
+      --dark-surface: #2A2420;
+      --white: #FEFEFE;
+      --burlap: #C4A882;
+      --terracotta: #B87333;
+      --lebanese: #1B4332;
+      --lebanese-medium: #2D6A4F;
+      --lebanese-surface: #E8F0EC;
+      --greek: #1B3A5C;
+      --greek-medium: #2D5F8A;
+      --greek-surface: #E8EEF4;
+      --whatsapp: #25D366;
+      --error: #C45B3E;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: #111;
+      color: var(--white);
+    }
+
+    /* Navigation */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(26, 22, 18, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(198, 168, 85, 0.2);
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border: 1px solid rgba(198, 168, 85, 0.3);
+      background: transparent;
+      color: var(--burlap);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+
+    /* Section wrapper */
+    .direction {
+      display: none;
+      min-height: 100vh;
+      padding-top: 70px;
+    }
+
+    .direction.active {
+      display: block;
+    }
+
+    .direction-title {
+      text-align: center;
+      padding: 40px 20px 20px;
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .direction-desc {
+      text-align: center;
+      padding: 0 20px 40px;
+      color: var(--burlap);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Mobile frame */
+    .phone-frame {
+      width: 375px;
+      margin: 0 auto 60px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(198, 168, 85, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* Desktop frame */
+    .desktop-frame {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(198, 168, 85, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .frame-label {
+      text-align: center;
+      padding: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--burlap);
+    }
+
+    .frames-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      align-items: flex-start;
+    }
+
+    /* ================================
+     DIRECTION 1: Dark Immersive
+     ================================ */
+    .d1-hero {
+      background: var(--dark);
+      position: relative;
+      height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px 24px;
+      background: linear-gradient(180deg, #2A2420 0%, #1A1612 50%, rgba(26, 22, 18, 0.95) 100%);
+    }
+
+    .d1-hero-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 380px;
+      background: linear-gradient(135deg, #3a3028 0%, #2a2218 50%, #1a1612 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .d1-hero-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      background: linear-gradient(transparent, var(--dark));
+    }
+
+    .d1-jar {
+      width: 140px;
+      height: 180px;
+      background: linear-gradient(180deg, var(--burlap) 0%, var(--burlap) 15%, var(--cream) 15%, var(--cream) 100%);
+      border-radius: 12px 12px 8px 8px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .d1-jar-label {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--lebanese);
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .d1-hero h1 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .d1-hero p {
+      font-size: 14px;
+      color: var(--burlap);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .d1-cta {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .d1-products {
+      background: var(--dark);
+      padding: 32px 16px;
+    }
+
+    .d1-products h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      padding: 0 8px;
+    }
+
+    .d1-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .d1-card {
+      background: var(--dark-surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(198, 168, 85, 0.1);
+    }
+
+    .d1-card-img {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d1-card-img.lebanese {
+      background: linear-gradient(135deg, #1a2a20, #2a3a30);
+    }
+
+    .d1-card-img.greek {
+      background: linear-gradient(135deg, #1a2a3a, #2a3a4a);
+    }
+
+    .d1-mini-jar {
+      width: 60px;
+      height: 80px;
+      background: var(--cream);
+      border-radius: 8px 8px 6px 6px;
+      position: relative;
+    }
+
+    .d1-mini-jar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: var(--burlap);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .d1-mini-jar .dot {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+
+    .d1-mini-jar .dot.leb {
+      background: var(--lebanese);
+    }
+
+    .d1-mini-jar .dot.grk {
+      background: var(--greek);
+    }
+
+    .d1-card-info {
+      padding: 12px;
+    }
+
+    .d1-card-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .d1-card-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .d1-card-btn {
+      display: block;
+      text-align: center;
+      padding: 8px;
+      background: rgba(198, 168, 85, 0.15);
+      color: var(--gold);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(198, 168, 85, 0.2);
+    }
+
+    .d1-bottom-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--dark);
+      border-top: 1px solid rgba(198, 168, 85, 0.2);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 20px;
+    }
+
+    .d1-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--burlap);
+    }
+
+    .d1-tab.active {
+      color: var(--gold);
+    }
+
+    .d1-tab-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    .d1-tab.active .d1-tab-icon {
+      opacity: 1;
+    }
+
+    .d1-whatsapp {
+      position: absolute;
+      bottom: 80px;
+      right: 16px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 10;
+    }
+
+    /* ================================
+     DIRECTION 2: Light & Clean
+     ================================ */
+    .d2-header {
+      background: var(--cream);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .d2-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 2px;
+    }
+
+    .d2-cart-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 2px solid var(--dark);
+      position: relative;
+    }
+
+    .d2-cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      font-size: 9px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .d2-hero {
+      background: var(--cream);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .d2-hero-badge {
+      display: inline-block;
+      padding: 4px 16px;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 16px;
+    }
+
+    .d2-hero h1 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--dark);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .d2-hero p {
+      font-size: 14px;
+      color: var(--gold-dark);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .d2-hero-img {
+      width: 200px;
+      height: 240px;
+      margin: 0 auto 24px;
+      background: var(--cream-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d2-large-jar {
+      width: 100px;
+      height: 140px;
+      background: linear-gradient(180deg, var(--burlap) 0%, var(--burlap) 12%, white 12%, white 100%);
+      border-radius: 10px 10px 8px 8px;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .d2-large-jar .dot {
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--lebanese);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .d2-products {
+      background: var(--cream);
+      padding: 0 16px 32px;
+    }
+
+    .d2-section-label {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+
+    .d2-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .d2-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .d2-card-img {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d2-card-img.leb-bg {
+      background: var(--lebanese-surface);
+    }
+
+    .d2-card-img.grk-bg {
+      background: var(--greek-surface);
+    }
+
+    .d2-card-info {
+      padding: 12px;
+    }
+
+    .d2-card-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: white;
+    }
+
+    .d2-card-badge.leb {
+      background: var(--lebanese);
+    }
+
+    .d2-card-badge.grk {
+      background: var(--greek);
+    }
+
+    .d2-card-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .d2-card-sub {
+      font-size: 12px;
+      color: var(--burlap);
+      margin-bottom: 8px;
+    }
+
+    .d2-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .d2-card-price {
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 15px;
+    }
+
+    .d2-add-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .d2-bottom-bar {
+      background: white;
+      border-top: 1px solid var(--cream-dark);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 20px;
+    }
+
+    .d2-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--burlap);
+    }
+
+    .d2-tab.active {
+      color: var(--gold-dark);
+    }
+
+    /* ================================
+     DIRECTION 3: Editorial Scroll
+     ================================ */
+    .d3-header {
+      background: var(--dark);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(198, 168, 85, 0.15);
+    }
+
+    .d3-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--gold);
+      letter-spacing: 3px;
+    }
+
+    .d3-hero {
+      background: var(--dark);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .d3-hero-medallion {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--gold);
+      font-weight: 700;
+      background: rgba(198, 168, 85, 0.05);
+    }
+
+    .d3-hero h1 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--cream);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .d3-hero-line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 16px auto;
+    }
+
+    .d3-hero p {
+      font-size: 13px;
+      color: var(--burlap);
+      line-height: 1.7;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .d3-story-section {
+      padding: 40px 24px;
+    }
+
+    .d3-story-section.dark-bg {
+      background: var(--dark);
+    }
+
+    .d3-story-section.cream-bg {
+      background: var(--cream);
+    }
+
+    .d3-story-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d3-story-img.dark {
+      background: linear-gradient(135deg, #3a3028, #2a2218);
+    }
+
+    .d3-story-img.warm {
+      background: linear-gradient(135deg, var(--cream-dark), var(--burlap));
+    }
+
+    .d3-story-section.dark-bg h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .d3-story-section.dark-bg p {
+      font-size: 14px;
+      color: var(--burlap);
+      line-height: 1.7;
+    }
+
+    .d3-story-section.cream-bg h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .d3-story-section.cream-bg p {
+      font-size: 14px;
+      color: var(--gold-dark);
+      line-height: 1.7;
+    }
+
+    .d3-product-strip {
+      background: var(--cream);
+      padding: 32px 16px;
+      text-align: center;
+    }
+
+    .d3-product-strip h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .d3-horizontal-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .d3-scroll-card {
+      min-width: 160px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+    }
+
+    .d3-scroll-img {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .d3-scroll-info {
+      padding: 12px;
+      text-align: left;
+    }
+
+    .d3-scroll-name {
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .d3-scroll-price {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--gold-dark);
+    }
+
+    /* ================================
+     DIRECTION 4: Split Personality
+     ================================ */
+    .d4-header {
+      background: var(--cream);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .d4-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 2px;
+    }
+
+    .d4-category-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 280px;
+    }
+
+    .d4-cat-left {
+      background: linear-gradient(135deg, #1B4332, #2D6A4F);
+      padding: 32px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .d4-cat-right {
+      background: linear-gradient(135deg, #1B3A5C, #2D5F8A);
+      padding: 32px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .d4-cat-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .d4-cat-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .d4-cat-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .d4-featured {
+      background: var(--cream);
+      padding: 32px 20px;
+    }
+
+    .d4-featured h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .d4-featured-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      margin-bottom: 12px;
+    }
+
+    .d4-featured-img {
+      width: 120px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .d4-featured-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .d4-featured-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .d4-featured-desc {
+      font-size: 12px;
+      color: var(--burlap);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .d4-featured-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .d4-featured-price {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .d4-featured-add {
+      padding: 6px 16px;
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .d4-macros-strip {
+      background: var(--dark);
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .d4-macro {
+      color: var(--cream);
+    }
+
+    .d4-macro-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .d4-macro-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--burlap);
+      margin-top: 2px;
+    }
+
+    /* ================================
+     DIRECTION 5: Product Detail Page
+     ================================ */
+    .d5-back {
+      background: var(--cream);
+      padding: 12px 20px;
+      font-size: 13px;
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .d5-product-hero {
+      background: var(--cream-dark);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+
+    .d5-big-jar {
+      width: 160px;
+      height: 220px;
+      background: linear-gradient(180deg, var(--burlap) 0%, var(--burlap) 12%, white 12%, white 100%);
+      border-radius: 14px 14px 10px 10px;
+      position: relative;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    .d5-big-jar .label {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--lebanese);
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .d5-big-jar .product-type {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: 11px;
+      color: var(--gold-dark);
+      white-space: nowrap;
+    }
+
+    .d5-info {
+      background: var(--cream);
+      padding: 24px 20px;
+    }
+
+    .d5-badge-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .d5-badge {
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .d5-badge.leb {
+      background: var(--lebanese);
+    }
+
+    .d5-badge.keto {
+      background: var(--terracotta);
+    }
+
+    .d5-product-name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .d5-product-sub {
+      font-size: 13px;
+      color: var(--burlap);
+      margin-bottom: 16px;
+    }
+
+    .d5-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .d5-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .d5-size-selector {
+      display: flex;
+      gap: 8px;
+    }
+
+    .d5-size {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--cream-dark);
+      background: white;
+      color: var(--dark);
+    }
+
+    .d5-size.active {
+      border-color: var(--gold);
+      background: rgba(198, 168, 85, 0.1);
+      color: var(--gold-dark);
+    }
+
+    .d5-macros {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+      background: var(--lebanese-surface);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .d5-macro-item {
+      text-align: center;
+    }
+
+    .d5-macro-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--lebanese);
+    }
+
+    .d5-macro-lbl {
+      font-size: 10px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .d5-add-to-cart {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+
+    .d5-delivery-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gold-dark);
+      padding: 8px;
+      background: var(--cream-dark);
+      border-radius: 8px;
+    }
+
+    /* ================================
+     DIRECTION 6: Cart / Checkout
+     ================================ */
+    .d6-header {
+      background: var(--cream);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .d6-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--dark);
+    }
+
+    .d6-close {
+      font-size: 18px;
+      color: var(--burlap);
+    }
+
+    .d6-delivery {
+      background: var(--cream);
+      padding: 20px;
+    }
+
+    .d6-delivery-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 10px;
+    }
+
+    .d6-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .d6-toggle-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      background: white;
+      border: 2px solid var(--cream-dark);
+    }
+
+    .d6-toggle-btn.active {
+      border-color: var(--gold);
+      background: rgba(198, 168, 85, 0.08);
+    }
+
+    .d6-toggle-day {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--dark);
+    }
+
+    .d6-toggle-date {
+      font-size: 12px;
+      color: var(--burlap);
+      margin-top: 2px;
+    }
+
+    .d6-items {
+      background: var(--cream);
+      padding: 0 20px 20px;
+    }
+
+    .d6-item {
+      display: flex;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      align-items: center;
+    }
+
+    .d6-item-img {
+      width: 64px;
+      height: 80px;
+      background: var(--cream-dark);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .d6-item-info {
+      flex: 1;
+    }
+
+    .d6-item-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .d6-item-size {
+      font-size: 12px;
+      color: var(--burlap);
+      margin-bottom: 8px;
+    }
+
+    .d6-qty {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .d6-qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--dark);
+      background: white;
+    }
+
+    .d6-qty-num {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .d6-item-price {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+      text-align: right;
+    }
+
+    .d6-summary {
+      background: var(--cream);
+      padding: 0 20px 20px;
+    }
+
+    .d6-summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--gold-dark);
+    }
+
+    .d6-summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-top: 2px solid var(--gold);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 8px;
+    }
+
+    .d6-checkout-btn {
+      display: block;
+      margin: 0 20px 20px;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .d6-delivery-confirm {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gold-dark);
+      padding: 0 20px 24px;
+    }
+
+    /* Comparison view */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Utility */
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-40 {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav-bar">
+    <button class="nav-btn active" onclick="showDirection('overview')">Overview</button>
+    <button class="nav-btn" onclick="showDirection('d1')">1. Dark Immersive</button>
+    <button class="nav-btn" onclick="showDirection('d2')">2. Light & Clean</button>
+    <button class="nav-btn" onclick="showDirection('d3')">3. Editorial Scroll</button>
+    <button class="nav-btn" onclick="showDirection('d4')">4. Split Personality</button>
+    <button class="nav-btn" onclick="showDirection('d5')">5. Product Detail</button>
+    <button class="nav-btn" onclick="showDirection('d6')">6. Cart Flow</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <div class="direction active" id="overview">
+    <h1 class="direction-title">MitchWeb Design Directions</h1>
+    <p class="direction-desc">
+      6 design explorations for the MICH storefront. Each explores a different approach to the Mediterranean brand
+      identity, dark/light rhythm, product presentation, and shopping flow. All use the same color tokens, typography,
+      and spacing foundation.
+    </p>
+
+    <div class="comparison-grid">
+      <!-- D1 Preview -->
+      <div>
+        <div class="frame-label">1. Dark Immersive Homepage</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d1')">
+          <div class="d1-hero" style="height:auto; min-height:500px">
+            <div class="d1-hero-img">
+              <div class="d1-jar">
+                <div class="d1-jar-label">MICH</div>
+              </div>
+            </div>
+            <h1 style="margin-top:220px">El Arte del Lacteo</h1>
+            <p>Yogurt griego y jocoque libanes artesanal, hecho a mano en Puebla</p>
+            <span class="d1-cta">Descubre Nuestros Productos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- D2 Preview -->
+      <div>
+        <div class="frame-label">2. Light & Clean Homepage</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d2')">
+          <div class="d2-header">
+            <div class="d2-logo">MICH</div>
+            <div class="d2-cart-icon"><span class="d2-cart-badge">2</span></div>
+          </div>
+          <div class="d2-hero">
+            <div class="d2-hero-badge">Artesanal &middot; Mediterraneo</div>
+            <div class="d2-hero-img">
+              <div class="d2-large-jar"><span class="dot">MICH</span><span class="product-type"
+                  style="position:absolute;bottom:15%;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-size:11px;color:var(--gold-dark)">Jocoque</span>
+              </div>
+            </div>
+            <h1>Tradicion Mediterranea</h1>
+            <p>Yogurt griego y jocoque artesanal en envase de vidrio</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D3 Preview -->
+      <div>
+        <div class="frame-label">3. Editorial Scroll</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d3')">
+          <div class="d3-header">
+            <div class="d3-logo">MICH</div>
+            <div style="color:var(--burlap);font-size:13px">Menu</div>
+          </div>
+          <div class="d3-hero">
+            <div class="d3-hero-medallion">MICH</div>
+            <h1>El Arte del Lacteo</h1>
+            <div class="d3-hero-line"></div>
+            <p>Donde la herencia mediterranea se encuentra con la maestria artesanal</p>
+          </div>
+          <div class="d3-story-section dark-bg">
+            <div class="d3-story-img dark">
+              <div class="d1-jar" style="transform:scale(0.7)">
+                <div class="d1-jar-label" style="font-size:12px">MICH</div>
+              </div>
+            </div>
+            <h2>La Tradicion</h2>
+            <p>70 anos de maestria culinaria libanesa en cada cucharada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison-grid">
+      <!-- D4 Preview -->
+      <div>
+        <div class="frame-label">4. Split Personality (Category Entry)</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d4')">
+          <div class="d4-header">
+            <div class="d4-logo">MICH</div>
+            <div style="color:var(--burlap);font-size:20px">&#9776;</div>
+          </div>
+          <div class="d4-category-split">
+            <div class="d4-cat-left">
+              <div class="d4-cat-icon">&#127807;</div>
+              <div class="d4-cat-title">Jocoque</div>
+              <div class="d4-cat-sub">Tradicion Libanesa</div>
+            </div>
+            <div class="d4-cat-right">
+              <div class="d4-cat-icon">&#127466;</div>
+              <div class="d4-cat-title">Yogurt</div>
+              <div class="d4-cat-sub">Estilo Griego</div>
+            </div>
+          </div>
+          <div class="d4-featured" style="padding-bottom:16px">
+            <h2>Destacados</h2>
+            <div class="d4-featured-card">
+              <div class="d4-featured-img" style="background:var(--lebanese-surface);">
+                <div class="d1-mini-jar"><span class="dot leb"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span>
+                </div>
+              </div>
+              <div class="d4-featured-info">
+                <div class="d4-featured-name">Jocoque Clasico</div>
+                <div class="d4-featured-desc">500g &middot; Envase de vidrio</div>
+                <div class="d4-featured-row">
+                  <div class="d4-featured-price">$189</div>
+                  <div class="d4-featured-add">Agregar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D5 Preview -->
+      <div>
+        <div class="frame-label">5. Product Detail Page</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d5')">
+          <div class="d5-back">&larr; Productos</div>
+          <div class="d5-product-hero" style="min-height:240px">
+            <div class="d5-big-jar">
+              <span class="label">MICH</span>
+              <span class="product-type">Jocoque Clasico</span>
+            </div>
+          </div>
+          <div class="d5-info">
+            <div class="d5-badge-row">
+              <span class="d5-badge leb">Libanes</span>
+              <span class="d5-badge keto">Keto</span>
+            </div>
+            <div class="d5-product-name">Jocoque Clasico</div>
+            <div class="d5-product-sub">Labneh artesanal &middot; Receta libanesa tradicional</div>
+            <div class="d5-macros">
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">18g</div>
+                <div class="d5-macro-lbl">Proteina</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">8g</div>
+                <div class="d5-macro-lbl">Grasa</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">3g</div>
+                <div class="d5-macro-lbl">Carbs</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">156</div>
+                <div class="d5-macro-lbl">Kcal</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D6 Preview -->
+      <div>
+        <div class="frame-label">6. Cart & Delivery Flow</div>
+        <div class="phone-frame" style="cursor:pointer" onclick="showDirection('d6')">
+          <div class="d6-header">
+            <div class="d6-title">Tu Carrito</div>
+            <div class="d6-close">&times;</div>
+          </div>
+          <div class="d6-delivery">
+            <div class="d6-delivery-label">Dia de entrega</div>
+            <div class="d6-toggle">
+              <div class="d6-toggle-btn active">
+                <div class="d6-toggle-day">Martes</div>
+                <div class="d6-toggle-date">11 marzo</div>
+              </div>
+              <div class="d6-toggle-btn">
+                <div class="d6-toggle-day">Viernes</div>
+                <div class="d6-toggle-date">14 marzo</div>
+              </div>
+            </div>
+          </div>
+          <div class="d6-items">
+            <div class="d6-item">
+              <div class="d6-item-img">
+                <div class="d1-mini-jar" style="transform:scale(0.7)"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot leb"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                </div>
+              </div>
+              <div class="d6-item-info">
+                <div class="d6-item-name">Jocoque Clasico</div>
+                <div class="d6-item-size">500g</div>
+                <div class="d6-qty">
+                  <span class="d6-qty-btn">-</span>
+                  <span class="d6-qty-num">2</span>
+                  <span class="d6-qty-btn">+</span>
+                </div>
+              </div>
+              <div class="d6-item-price">$378</div>
+            </div>
+          </div>
+          <div class="d6-summary">
+            <div class="d6-summary-row"><span>Subtotal</span><span>$378</span></div>
+            <div class="d6-summary-row"><span>Envio</span><span>Gratis</span></div>
+            <div class="d6-summary-total"><span>Total</span><span>$378</span></div>
+          </div>
+          <a class="d6-checkout-btn">Pagar Ahora</a>
+          <div class="d6-delivery-confirm">Entrega el martes 11 de marzo &middot; Puebla/Cholula</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 1: Full Dark -->
+  <div class="direction" id="d1">
+    <h1 class="direction-title">Direction 1: Dark Immersive</h1>
+    <p class="direction-desc">Full dark mode homepage inspired by the brand concept PDF. Oil-painting mood. The product
+      emerges from darkness. Gold text on dark. Maximum visual drama. Best for: first impression, brand storytelling,
+      hero moment.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Mobile Homepage</div>
+        <div class="phone-frame" style="position:relative">
+          <div class="d1-hero">
+            <div class="d1-hero-img">
+              <div class="d1-jar">
+                <div class="d1-jar-label">MICH</div>
+              </div>
+            </div>
+            <h1 style="margin-top:200px">El Arte del Lacteo</h1>
+            <p>Yogurt griego y jocoque libanes artesanal, hecho a mano en Puebla</p>
+            <span class="d1-cta">Descubre Nuestros Productos</span>
+          </div>
+          <div class="d1-products">
+            <h2>Nuestros Productos</h2>
+            <div class="d1-grid">
+              <div class="d1-card">
+                <div class="d1-card-img lebanese">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d1-card-info">
+                  <div class="d1-card-name">Jocoque Clasico</div>
+                  <div class="d1-card-price">$189</div>
+                  <a class="d1-card-btn">Agregar +</a>
+                </div>
+              </div>
+              <div class="d1-card">
+                <div class="d1-card-img greek">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot grk"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                  </div>
+                </div>
+                <div class="d1-card-info">
+                  <div class="d1-card-name">Yogurt Natural</div>
+                  <div class="d1-card-price">$159</div>
+                  <a class="d1-card-btn">Agregar +</a>
+                </div>
+              </div>
+              <div class="d1-card">
+                <div class="d1-card-img lebanese">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d1-card-info">
+                  <div class="d1-card-name">Jocoque Spicy</div>
+                  <div class="d1-card-price">$199</div>
+                  <a class="d1-card-btn">Agregar +</a>
+                </div>
+              </div>
+              <div class="d1-card">
+                <div class="d1-card-img greek">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot grk"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                  </div>
+                </div>
+                <div class="d1-card-info">
+                  <div class="d1-card-name">Yogurt Coco</div>
+                  <div class="d1-card-price">$179</div>
+                  <a class="d1-card-btn">Agregar +</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d1-bottom-bar">
+            <div class="d1-tab active">
+              <div class="d1-tab-icon" style="border-radius:50%"></div>Inicio
+            </div>
+            <div class="d1-tab">
+              <div class="d1-tab-icon" style="border-radius:50%"></div>Productos
+            </div>
+            <div class="d1-tab">
+              <div class="d1-tab-icon" style="border-radius:50%"></div>Carrito
+            </div>
+            <div class="d1-tab">
+              <div class="d1-tab-icon" style="border-radius:50%"></div>Cuenta
+            </div>
+          </div>
+          <div class="d1-whatsapp">W</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 2: Light & Clean -->
+  <div class="direction" id="d2">
+    <h1 class="direction-title">Direction 2: Light & Clean</h1>
+    <p class="direction-desc">Cream/ivory backgrounds, clean cards, product photography on light surfaces. Feels like a
+      premium shop. Easy to read, comfortable for non-tech-savvy users. Product line accents (green/blue) show on cards.
+      Gold for CTAs only. Best for: shopping, browsing, returning customers.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Mobile Homepage</div>
+        <div class="phone-frame">
+          <div class="d2-header">
+            <div class="d2-logo">MICH</div>
+            <div class="d2-cart-icon" style="position:relative"><span class="d2-cart-badge">2</span></div>
+          </div>
+          <div class="d2-hero">
+            <div class="d2-hero-badge">Artesanal &middot; Mediterraneo</div>
+            <div class="d2-hero-img">
+              <div class="d2-large-jar"><span class="dot"
+                  style="position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);width:45px;height:45px;border-radius:50%;background:var(--lebanese);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:11px;color:var(--gold);font-weight:700">MICH</span><span
+                  style="position:absolute;bottom:15%;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-size:11px;color:var(--gold-dark)">Jocoque</span>
+              </div>
+            </div>
+            <h1 style="font-family:var(--font-display);font-size:28px;color:var(--dark)">Tradicion Mediterranea</h1>
+            <p>Yogurt griego y jocoque artesanal en envase de vidrio</p>
+          </div>
+          <div class="d2-products">
+            <div class="d2-section-label">Nuestros Productos</div>
+            <div class="d2-grid">
+              <div class="d2-card">
+                <div class="d2-card-img leb-bg">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d2-card-info">
+                  <span class="d2-card-badge leb">Libanes</span>
+                  <div class="d2-card-name">Jocoque Clasico</div>
+                  <div class="d2-card-sub">500g &middot; Vidrio</div>
+                  <div class="d2-card-row">
+                    <span class="d2-card-price">$189</span>
+                    <span class="d2-add-btn">+</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d2-card">
+                <div class="d2-card-img grk-bg">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot grk"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                  </div>
+                </div>
+                <div class="d2-card-info">
+                  <span class="d2-card-badge grk">Griego</span>
+                  <div class="d2-card-name">Yogurt Natural</div>
+                  <div class="d2-card-sub">500g &middot; Vidrio</div>
+                  <div class="d2-card-row">
+                    <span class="d2-card-price">$159</span>
+                    <span class="d2-add-btn">+</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d2-card">
+                <div class="d2-card-img leb-bg">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d2-card-info">
+                  <span class="d2-card-badge leb">Libanes</span>
+                  <div class="d2-card-name">Jocoque Spicy</div>
+                  <div class="d2-card-sub">200g &middot; Vidrio</div>
+                  <div class="d2-card-row">
+                    <span class="d2-card-price">$119</span>
+                    <span class="d2-add-btn">+</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d2-card">
+                <div class="d2-card-img grk-bg">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot grk"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                  </div>
+                </div>
+                <div class="d2-card-info">
+                  <span class="d2-card-badge grk">Griego</span>
+                  <div class="d2-card-name">Yogurt Coco</div>
+                  <div class="d2-card-sub">250g &middot; Vidrio</div>
+                  <div class="d2-card-row">
+                    <span class="d2-card-price">$109</span>
+                    <span class="d2-add-btn">+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d2-bottom-bar">
+            <div class="d2-tab active">Inicio</div>
+            <div class="d2-tab">Productos</div>
+            <div class="d2-tab">Carrito</div>
+            <div class="d2-tab">Cuenta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 3: Editorial -->
+  <div class="direction" id="d3">
+    <h1 class="direction-title">Direction 3: Editorial Scroll</h1>
+    <p class="direction-desc">Storytelling-first. The homepage is a vertical scroll through the brand story, with
+      products woven into the narrative. Dark/light alternating sections. Products appear in horizontal scroll strips.
+      Best for: first-time visitors, brand discovery, heritage storytelling.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Mobile Homepage</div>
+        <div class="phone-frame">
+          <div class="d3-header">
+            <div class="d3-logo">MICH</div>
+            <div style="color:var(--burlap);font-size:13px">Menu</div>
+          </div>
+          <div class="d3-hero">
+            <div class="d3-hero-medallion">MICH</div>
+            <h1>El Arte del Lacteo</h1>
+            <div class="d3-hero-line"></div>
+            <p>Donde la herencia mediterranea se encuentra con la maestria artesanal</p>
+          </div>
+          <div class="d3-product-strip">
+            <h2>Nuestros Productos</h2>
+            <div class="d3-horizontal-scroll">
+              <div class="d3-scroll-card">
+                <div class="d3-scroll-img" style="background:var(--lebanese-surface)">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d3-scroll-info">
+                  <div class="d3-scroll-name">Jocoque Clasico</div>
+                  <div class="d3-scroll-price">$189</div>
+                </div>
+              </div>
+              <div class="d3-scroll-card">
+                <div class="d3-scroll-img" style="background:var(--greek-surface)">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot grk"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                  </div>
+                </div>
+                <div class="d3-scroll-info">
+                  <div class="d3-scroll-name">Yogurt Natural</div>
+                  <div class="d3-scroll-price">$159</div>
+                </div>
+              </div>
+              <div class="d3-scroll-card">
+                <div class="d3-scroll-img" style="background:var(--lebanese-surface)">
+                  <div class="d1-mini-jar"><span
+                      style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                      class="dot leb"
+                      style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                  </div>
+                </div>
+                <div class="d3-scroll-info">
+                  <div class="d3-scroll-name">Jocoque Spicy</div>
+                  <div class="d3-scroll-price">$199</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d3-story-section dark-bg">
+            <div class="d3-story-img dark">
+              <div class="d1-jar" style="transform:scale(0.6)">
+                <div class="d1-jar-label" style="font-size:12px">MICH</div>
+              </div>
+            </div>
+            <h2>La Tradicion</h2>
+            <p>70 anos de maestria culinaria libanesa. Recetas autenticas del Mediterraneo, hechas a mano en Puebla con
+              ingredientes premium y sin conservadores.</p>
+          </div>
+          <div class="d3-story-section cream-bg">
+            <div class="d3-story-img warm">
+              <div
+                style="font-family:var(--font-display);font-size:18px;color:var(--gold-dark);text-align:center;padding:20px;line-height:1.4">
+                <em>"No es solo yogurt; es una obra maestra culinaria"</em></div>
+            </div>
+            <h2>El Proceso Artesanal</h2>
+            <p>Cada frasco es elaborado a mano, colado lentamente y envasado en vidrio premium. Sin atajos, sin
+              estabilizantes, sin compromiso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 4: Split -->
+  <div class="direction" id="d4">
+    <h1 class="direction-title">Direction 4: Split Personality</h1>
+    <p class="direction-desc">Homepage splits into the two product lines — Lebanese (green) and Greek (blue) — as entry
+      points. Below the split, featured products appear in a unified Mediterranean layout with horizontal cards. Macros
+      strip for fitness audience. Best for: users who know what they want, category navigation.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Mobile Homepage</div>
+        <div class="phone-frame">
+          <div class="d4-header">
+            <div class="d4-logo">MICH</div>
+            <div style="color:var(--burlap);font-size:20px">&#9776;</div>
+          </div>
+          <div class="d4-category-split">
+            <div class="d4-cat-left">
+              <div class="d4-cat-icon">&#127807;</div>
+              <div class="d4-cat-title">Jocoque</div>
+              <div class="d4-cat-sub">Tradicion Libanesa</div>
+            </div>
+            <div class="d4-cat-right">
+              <div class="d4-cat-icon">&#9782;</div>
+              <div class="d4-cat-title">Yogurt</div>
+              <div class="d4-cat-sub">Estilo Griego</div>
+            </div>
+          </div>
+          <div class="d4-macros-strip">
+            <div class="d4-macro">
+              <div class="d4-macro-value">18g</div>
+              <div class="d4-macro-label">Proteina</div>
+            </div>
+            <div class="d4-macro">
+              <div class="d4-macro-value">0g</div>
+              <div class="d4-macro-label">Azucar</div>
+            </div>
+            <div class="d4-macro">
+              <div class="d4-macro-value">3g</div>
+              <div class="d4-macro-label">Carbs</div>
+            </div>
+            <div class="d4-macro">
+              <div class="d4-macro-value" style="font-size:14px">&#10003;</div>
+              <div class="d4-macro-label">Keto</div>
+            </div>
+          </div>
+          <div class="d4-featured">
+            <h2>Destacados</h2>
+            <div class="d4-featured-card">
+              <div class="d4-featured-img" style="background:var(--lebanese-surface)">
+                <div class="d1-mini-jar"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot leb"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                </div>
+              </div>
+              <div class="d4-featured-info">
+                <div class="d4-featured-name">Jocoque Clasico</div>
+                <div class="d4-featured-desc">Labneh artesanal &middot; 500g vidrio</div>
+                <div class="d4-featured-row">
+                  <div class="d4-featured-price">$189</div>
+                  <div class="d4-featured-add">Agregar</div>
+                </div>
+              </div>
+            </div>
+            <div class="d4-featured-card">
+              <div class="d4-featured-img" style="background:var(--greek-surface)">
+                <div class="d1-mini-jar"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot grk"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                </div>
+              </div>
+              <div class="d4-featured-info">
+                <div class="d4-featured-name">Yogurt Natural</div>
+                <div class="d4-featured-desc">Yogurt griego &middot; 500g vidrio</div>
+                <div class="d4-featured-row">
+                  <div class="d4-featured-price">$159</div>
+                  <div class="d4-featured-add">Agregar</div>
+                </div>
+              </div>
+            </div>
+            <div class="d4-featured-card">
+              <div class="d4-featured-img" style="background:var(--greek-surface)">
+                <div class="d1-mini-jar"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot grk"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                </div>
+              </div>
+              <div class="d4-featured-info">
+                <div class="d4-featured-name">Yogurt Coco</div>
+                <div class="d4-featured-desc">Con coco y miel &middot; 250g vidrio</div>
+                <div class="d4-featured-row">
+                  <div class="d4-featured-price">$109</div>
+                  <div class="d4-featured-add">Agregar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 5: Product Detail -->
+  <div class="direction" id="d5">
+    <h1 class="direction-title">Direction 5: Product Detail Page</h1>
+    <p class="direction-desc">How a single product page looks — layered information from visual to nutritional to
+      heritage. This is where the dual messaging lives: macros for fitness users, story for foodies. Product-line accent
+      colors appear here.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Jocoque Product (Lebanese Green)</div>
+        <div class="phone-frame">
+          <div class="d5-back">&larr; Productos</div>
+          <div class="d5-product-hero">
+            <div class="d5-big-jar">
+              <span class="label">MICH</span>
+              <span class="product-type">Jocoque Clasico</span>
+            </div>
+          </div>
+          <div class="d5-info">
+            <div class="d5-badge-row">
+              <span class="d5-badge leb">Libanes</span>
+              <span class="d5-badge keto">Keto-Friendly</span>
+            </div>
+            <div class="d5-product-name">Jocoque Clasico</div>
+            <div class="d5-product-sub">Labneh artesanal &middot; Receta libanesa tradicional</div>
+            <div class="d5-price-row">
+              <div class="d5-price">$189</div>
+              <div class="d5-size-selector">
+                <span class="d5-size">200g</span>
+                <span class="d5-size active">500g</span>
+              </div>
+            </div>
+            <div class="d5-macros">
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">18g</div>
+                <div class="d5-macro-lbl">Proteina</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">8g</div>
+                <div class="d5-macro-lbl">Grasa</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">3g</div>
+                <div class="d5-macro-lbl">Carbs</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val">156</div>
+                <div class="d5-macro-lbl">Kcal</div>
+              </div>
+            </div>
+            <a class="d5-add-to-cart">Agregar al Carrito</a>
+            <div class="d5-delivery-note">Entrega: martes 11 o viernes 14 de marzo &middot; Puebla/Cholula</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="frame-label">Yogurt Product (Greek Blue)</div>
+        <div class="phone-frame">
+          <div class="d5-back">&larr; Productos</div>
+          <div class="d5-product-hero" style="background:var(--greek-surface)">
+            <div class="d5-big-jar">
+              <span class="label" style="background:var(--greek)">MICH</span>
+              <span class="product-type">Yogurt Natural</span>
+            </div>
+          </div>
+          <div class="d5-info">
+            <div class="d5-badge-row">
+              <span class="d5-badge grk" style="background:var(--greek)">Griego</span>
+              <span class="d5-badge" style="background:var(--gold-dark)">Alto Proteina</span>
+            </div>
+            <div class="d5-product-name">Yogurt Griego Natural</div>
+            <div class="d5-product-sub">Yogurt colado artesanal &middot; Sin azucar anadida</div>
+            <div class="d5-price-row">
+              <div class="d5-price">$159</div>
+              <div class="d5-size-selector">
+                <span class="d5-size">250g</span>
+                <span class="d5-size active">500g</span>
+                <span class="d5-size">1kg</span>
+              </div>
+            </div>
+            <div class="d5-macros" style="background:var(--greek-surface)">
+              <div class="d5-macro-item">
+                <div class="d5-macro-val" style="color:var(--greek)">22g</div>
+                <div class="d5-macro-lbl">Proteina</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val" style="color:var(--greek)">5g</div>
+                <div class="d5-macro-lbl">Grasa</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val" style="color:var(--greek)">4g</div>
+                <div class="d5-macro-lbl">Carbs</div>
+              </div>
+              <div class="d5-macro-item">
+                <div class="d5-macro-val" style="color:var(--greek)">148</div>
+                <div class="d5-macro-lbl">Kcal</div>
+              </div>
+            </div>
+            <a class="d5-add-to-cart">Agregar al Carrito</a>
+            <div class="d5-delivery-note">Entrega: martes 11 o viernes 14 de marzo &middot; Puebla/Cholula</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION 6: Cart -->
+  <div class="direction" id="d6">
+    <h1 class="direction-title">Direction 6: Cart & Delivery Flow</h1>
+    <p class="direction-desc">The cart experience with the martes/viernes delivery day toggle, product photos in the
+      cart, clear pricing, and confident checkout. This is where "simpler than a phone call" gets proven.</p>
+    <div class="frames-row">
+      <div>
+        <div class="frame-label">Cart with Delivery Selection</div>
+        <div class="phone-frame">
+          <div class="d6-header">
+            <div class="d6-title">Tu Carrito</div>
+            <div class="d6-close" style="font-size:24px;cursor:pointer">&times;</div>
+          </div>
+          <div class="d6-delivery">
+            <div class="d6-delivery-label">Dia de entrega</div>
+            <div class="d6-toggle">
+              <div class="d6-toggle-btn active">
+                <div class="d6-toggle-day">Martes</div>
+                <div class="d6-toggle-date">11 marzo</div>
+              </div>
+              <div class="d6-toggle-btn">
+                <div class="d6-toggle-day">Viernes</div>
+                <div class="d6-toggle-date">14 marzo</div>
+              </div>
+            </div>
+          </div>
+          <div class="d6-items">
+            <div class="d6-item">
+              <div class="d6-item-img" style="background:var(--lebanese-surface)">
+                <div class="d1-mini-jar" style="transform:scale(0.6)"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot leb"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--lebanese)"></span>
+                </div>
+              </div>
+              <div class="d6-item-info">
+                <div class="d6-item-name">Jocoque Clasico</div>
+                <div class="d6-item-size">500g &middot; Vidrio</div>
+                <div class="d6-qty">
+                  <span class="d6-qty-btn">&minus;</span>
+                  <span class="d6-qty-num">2</span>
+                  <span class="d6-qty-btn">+</span>
+                </div>
+              </div>
+              <div class="d6-item-price">$378</div>
+            </div>
+            <div class="d6-item">
+              <div class="d6-item-img" style="background:var(--greek-surface)">
+                <div class="d1-mini-jar" style="transform:scale(0.6)"><span
+                    style="position:absolute;top:0;left:0;right:0;height:12px;background:var(--burlap);border-radius:8px 8px 0 0"></span><span
+                    class="dot grk"
+                    style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);background:var(--greek)"></span>
+                </div>
+              </div>
+              <div class="d6-item-info">
+                <div class="d6-item-name">Yogurt Natural</div>
+                <div class="d6-item-size">1kg &middot; Vidrio</div>
+                <div class="d6-qty">
+                  <span class="d6-qty-btn">&minus;</span>
+                  <span class="d6-qty-num">1</span>
+                  <span class="d6-qty-btn">+</span>
+                </div>
+              </div>
+              <div class="d6-item-price">$249</div>
+            </div>
+          </div>
+          <div class="d6-summary">
+            <div class="d6-summary-row"><span>Subtotal</span><span>$627</span></div>
+            <div class="d6-summary-row"><span>Envio (Puebla/Cholula)</span><span
+                style="color:var(--lebanese-medium)">Gratis</span></div>
+            <div class="d6-summary-total"><span>Total</span><span>$627</span></div>
+          </div>
+          <a class="d6-checkout-btn">Pagar Ahora &rarr;</a>
+          <div class="d6-delivery-confirm">Entrega el martes 11 de marzo &middot; Puebla/Cholula</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showDirection(id) {
+      document.querySelectorAll('.direction').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
+
+</body>
+
+</html>
