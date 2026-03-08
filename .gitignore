@@ -1,13 +1,16 @@
 # Dependencies
 node_modules/
-.pnp/
-.pnp.js
 
 # Build
-.next/
-out/
-dist/
-build/
+/.cache
+/build
+/dist
+/public/build
+
+# Hydrogen / Oxygen
+/.mf
+.shopify
+.react-router
 
 # Environment
 .env
@@ -22,13 +25,10 @@ Desktop.ini
 # IDE
 .vscode/
 .idea/
+.cursor/
 
-# Media (large binary files - tracked separately)
+# Media (large binary files)
 MichMedia/*.psd
 MichMedia/*.xlsx
 MichMedia/*.pdf
 MichMedia/*.docx
-
-# Old Next.js project (legacy)
-yogurt_orders/nextjs_space/node_modules/
-yogurt_orders/nextjs_space/.next/
