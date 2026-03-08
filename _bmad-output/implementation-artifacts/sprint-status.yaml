@@ -1,0 +1,120 @@
+# generated: 2026-03-08
+# project: MitchWeb
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-03-08
+project: MitchWeb
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Branded Storefront Foundation
+  epic-1: in-progress
+  1-1-project-initialization-deployment-pipeline: done
+  1-2-design-system-token-configuration: done
+  1-3-core-layout-responsive-navigation: in-progress
+  1-4-persistent-whatsapp-cta: backlog
+  1-5-testing-foundation: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Product Discovery & Catalog
+  epic-2: backlog
+  2-1-product-catalog-collection-pages: backlog
+  2-2-product-detail-page: backlog
+  2-3-nutritional-macros-keto-badges: backlog
+  2-4-real-time-inventory-out-of-stock-states: backlog
+  2-5-quick-add-to-cart-product-search: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Cart & Checkout
+  epic-3: backlog
+  3-1-cart-page-cart-item-management: backlog
+  3-2-delivery-day-selection: backlog
+  3-3-delivery-zone-validation: backlog
+  3-4-checkout-payment-integration: backlog
+  3-5-free-shipping-bar-inventory-enforcement: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Brand & Content Experience
+  epic-4: backlog
+  4-1-heritage-story-page-nuestra-historia: backlog
+  4-2-faq-page: backlog
+  4-3-legal-pages-seo-foundation: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Customer Accounts & Post-Purchase
+  epic-5: backlog
+  5-1-customer-account-order-history: backlog
+  5-2-order-confirmation-webhook-whatsapp-notification: backlog
+  5-3-post-purchase-support-via-whatsapp: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: WhatsApp Conversational Commerce
+  epic-6: backlog
+  6-1-openclaw-setup-storefront-mcp-integration: backlog
+  6-2-product-qa-catalog-browsing-via-whatsapp: backlog
+  6-3-whatsapp-order-placement-checkout-links: backlog
+  6-4-human-escalation-operator-summary: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Operations & Administration
+  epic-7: backlog
+  7-1-shopify-admin-configuration-metafield-schema: backlog
+  7-2-order-fulfillment-with-delivery-day-visibility: backlog
+  7-3-delivery-zone-management-analytics: backlog
+  epic-7-retrospective: optional
+
+  # Epic 8: Subscription Management (Phase 2)
+  epic-8: backlog
+  8-1-subscription-plan-setup-product-configuration: backlog
+  8-2-subscription-enrollment-delivery-day-selection: backlog
+  8-3-subscription-self-service-management: backlog
+  8-4-subscription-billing-pre-delivery-notifications: backlog
+  epic-8-retrospective: optional
+
+  # Epic 9: Glass Recycling & Sustainability (Phase 2)
+  epic-9: backlog
+  9-1-jar-return-program-enrollment-credit-tracking: backlog
+  9-2-jar-return-history-environmental-impact-dashboard: backlog
+  9-3-delivery-driver-jar-pickup-flow: backlog
+  epic-9-retrospective: optional
+
+  # Epic 10: Email Marketing & Retention (Phase 2)
+  epic-10: backlog
+  10-1-klaviyo-integration-email-capture: backlog
+  10-2-welcome-post-purchase-email-flows: backlog
+  10-3-cart-recovery-win-back-flows: backlog
+  10-4-subscription-dunning-email-flow: backlog
+  epic-10-retrospective: optional

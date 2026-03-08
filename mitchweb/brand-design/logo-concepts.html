@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MICH — Logo Explorations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS VARIABLES & RESET
+           ======================================== */
+        :root {
+            --deep-olive: #1B3A2D;
+            --olive: #3D6B4F;
+            --light-olive: #6B8F7B;
+            --sage: #9BB09F;
+            --terracotta: #C4763C;
+            --terracotta-light: #D4905A;
+            --gold: #C9A84C;
+            --light-gold: #E8D5A3;
+            --pale-gold: #F0E6CC;
+            --cream: #F5EDE0;
+            --warm-white: #FAF7F2;
+            --warm-black: #1A1714;
+            --charcoal: #2E2A25;
+            --espresso: #3D352E;
+            --stone: #8A7E72;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--warm-black);
+            color: var(--cream);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========================================
+           NOISE TEXTURE OVERLAY
+           ======================================== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.03;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 4rem);
+        }
+
+        .section-label {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .gold-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 2rem 0;
+        }
+
+        .gold-line--center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========================================
+           SCROLL ANIMATIONS
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+
+        /* ========================================
+           COVER SECTION
+           ======================================== */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(61,107,79,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(196,118,60,0.08) 0%, transparent 50%),
+                var(--warm-black);
+        }
+
+        .cover__pretitle {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 200;
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .cover__title {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: clamp(4rem, 12vw, 10rem);
+            letter-spacing: 0.15em;
+            color: var(--cream);
+            line-height: 0.9;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+
+        .cover__divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 2.5rem 0;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+
+        .cover__subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: var(--light-gold);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        .cover__date {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--stone);
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.1s forwards;
+        }
+
+        .cover__scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.5s forwards;
+        }
+
+        .cover__scroll span {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--stone);
+        }
+
+        .cover__scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ========================================
+           PALETTE SECTION
+           ======================================== */
+        .palette {
+            padding: 8rem 0;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .palette__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .palette__swatch {
+            text-align: center;
+        }
+
+        .palette__color {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .palette__color:hover {
+            transform: scale(1.05);
+        }
+
+        .palette__name {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 0.25rem;
+        }
+
+        .palette__hex {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--stone);
+        }
+
+        .palette__description {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--light-gold);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-top: 3rem;
+        }
+
+        /* ========================================
+           TYPOGRAPHY SECTION
+           ======================================== */
+        .typography {
+            padding: 8rem 0;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .type-showcase {
+            margin-top: 3rem;
+        }
+
+        .type-row {
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .type-row__label {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .type-row__sample--cinzel {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            letter-spacing: 0.12em;
+            color: var(--cream);
+            line-height: 1.1;
+        }
+
+        .type-row__sample--cormorant {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            color: var(--cream);
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .type-row__sample--josefin {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--cream);
+        }
+
+        .type-row__note {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--stone);
+            margin-top: 0.75rem;
+        }
+
+        /* ========================================
+           CONCEPT SECTIONS
+           ======================================== */
+        .concept {
+            padding: 8rem 0;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .concept__number {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(5rem, 10vw, 9rem);
+            font-weight: 400;
+            color: rgba(201,168,76,0.08);
+            line-height: 1;
+            margin-bottom: -2rem;
+            position: relative;
+            z-index: 0;
+        }
+
+        .concept__name {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            letter-spacing: 0.15em;
+            color: var(--cream);
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .concept__desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 1.15rem;
+            color: var(--light-gold);
+            line-height: 1.8;
+            max-width: 550px;
+            margin-bottom: 4rem;
+        }
+
+        /* Logo display areas */
+        .logo-display {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo-display {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .logo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(3rem, 6vw, 5rem);
+            border-radius: 3px;
+            min-height: 320px;
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+
+        .logo-card:hover {
+            transform: scale(1.01);
+        }
+
+        .logo-card--cream {
+            background: var(--cream);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .logo-card--dark {
+            background: var(--warm-black);
+            border: 1px solid rgba(201,168,76,0.12);
+        }
+
+        .logo-card--olive {
+            background: var(--deep-olive);
+            border: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .logo-card--terracotta {
+            background: var(--terracotta);
+        }
+
+        .logo-card__label {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.25rem;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.55rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        .logo-card--cream .logo-card__label { color: var(--stone); }
+        .logo-card--dark .logo-card__label { color: var(--stone); }
+        .logo-card--olive .logo-card__label { color: var(--sage); }
+        .logo-card--terracotta .logo-card__label { color: rgba(255,255,255,0.5); }
+
+        /* ========================================
+           LOGO CONCEPT 1: THE CLASSICAL WORDMARK
+           ======================================== */
+        .wordmark {
+            text-align: center;
+        }
+
+        .wordmark__main {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 0.25em;
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .wordmark__branch {
+            display: block;
+            margin: 0.75rem auto;
+            width: clamp(120px, 20vw, 200px);
+        }
+
+        .wordmark__sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .wordmark__tagline {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 1.25rem;
+        }
+
+        /* Dark variants */
+        .logo-card--cream .wordmark__main { color: var(--warm-black); }
+        .logo-card--cream .wordmark__sub { color: var(--espresso); }
+        .logo-card--cream .wordmark__tagline { color: var(--stone); }
+
+        .logo-card--dark .wordmark__main { color: var(--cream); }
+        .logo-card--dark .wordmark__sub { color: var(--light-gold); }
+        .logo-card--dark .wordmark__tagline { color: var(--stone); }
+
+        .logo-card--olive .wordmark__main { color: var(--cream); }
+        .logo-card--olive .wordmark__sub { color: var(--pale-gold); }
+        .logo-card--olive .wordmark__tagline { color: var(--sage); }
+
+        .logo-card--terracotta .wordmark__main { color: var(--warm-white); }
+        .logo-card--terracotta .wordmark__sub { color: rgba(255,255,255,0.85); }
+        .logo-card--terracotta .wordmark__tagline { color: rgba(255,255,255,0.5); }
+
+        /* ========================================
+           LOGO CONCEPT 2: THE MEDITERRANEAN SEAL
+           ======================================== */
+        .seal-logo {
+            text-align: center;
+        }
+
+        .seal-logo svg {
+            width: clamp(200px, 30vw, 280px);
+            height: auto;
+        }
+
+        /* ========================================
+           LOGO CONCEPT 3: THE ARCH
+           ======================================== */
+        .arch-logo {
+            text-align: center;
+        }
+
+        .arch-logo svg {
+            width: clamp(160px, 25vw, 240px);
+            height: auto;
+        }
+
+        /* ========================================
+           LOGO CONCEPT 4: MONOGRAM
+           ======================================== */
+        .monogram-logo {
+            text-align: center;
+        }
+
+        .monogram-logo svg {
+            width: clamp(140px, 22vw, 200px);
+            height: auto;
+        }
+
+        .monogram-lockup {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .monogram-lockup svg {
+            width: clamp(60px, 10vw, 80px);
+            height: auto;
+        }
+
+        .monogram-lockup__text {
+            text-align: left;
+            border-left: 1px solid;
+            padding-left: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .monogram-lockup__name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            letter-spacing: 0.2em;
+            line-height: 1;
+        }
+
+        .monogram-lockup__desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: clamp(0.65rem, 1vw, 0.8rem);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+        }
+
+        .logo-card--cream .monogram-lockup__text { border-color: rgba(26,23,20,0.2); }
+        .logo-card--cream .monogram-lockup__name { color: var(--warm-black); }
+        .logo-card--cream .monogram-lockup__desc { color: var(--espresso); }
+
+        .logo-card--dark .monogram-lockup__text { border-color: rgba(201,168,76,0.3); }
+        .logo-card--dark .monogram-lockup__name { color: var(--cream); }
+        .logo-card--dark .monogram-lockup__desc { color: var(--light-gold); }
+
+        .logo-card--olive .monogram-lockup__text { border-color: rgba(201,168,76,0.3); }
+        .logo-card--olive .monogram-lockup__name { color: var(--cream); }
+        .logo-card--olive .monogram-lockup__desc { color: var(--pale-gold); }
+
+        .logo-card--terracotta .monogram-lockup__text { border-color: rgba(255,255,255,0.3); }
+        .logo-card--terracotta .monogram-lockup__name { color: var(--warm-white); }
+        .logo-card--terracotta .monogram-lockup__desc { color: rgba(255,255,255,0.8); }
+
+        /* ========================================
+           APPLICATIONS SECTION
+           ======================================== */
+        .applications {
+            padding: 8rem 0;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .app-mockup {
+            background: var(--charcoal);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(201,168,76,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .app-mockup:hover {
+            transform: translateY(-4px);
+        }
+
+        .app-mockup__visual {
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .app-mockup__jar {
+            width: 100%;
+            max-width: 160px;
+        }
+
+        .app-mockup__label {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .app-mockup__title {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .app-mockup__note {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: var(--stone);
+            font-style: italic;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .footer__brand {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer__tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--stone);
+            margin-bottom: 3rem;
+        }
+
+        .footer__copy {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(138,126,114,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+         COVER
+         ======================================== -->
+    <section class="cover">
+        <div class="cover__pretitle">Jocoque & Yogurt</div>
+        <h1 class="cover__title">MICH</h1>
+        <div class="cover__divider"></div>
+        <p class="cover__subtitle">Logo & Identity Explorations</p>
+        <p class="cover__date">February 2026 &mdash; Mediterranean Luxury</p>
+        <div class="cover__scroll">
+            <span>Scroll</span>
+            <div class="cover__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         COLOR PALETTE
+         ======================================== -->
+    <section class="palette">
+        <div class="container">
+            <div class="section-label reveal">Color Palette</div>
+            <div class="gold-line reveal reveal-delay-1"></div>
+            <div class="palette__grid reveal reveal-delay-2">
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--deep-olive);"></div>
+                    <div class="palette__name">Deep Olive</div>
+                    <div class="palette__hex">#1B3A2D</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--olive);"></div>
+                    <div class="palette__name">Olive</div>
+                    <div class="palette__hex">#3D6B4F</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--terracotta);"></div>
+                    <div class="palette__name">Terracotta</div>
+                    <div class="palette__hex">#C4763C</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--gold);"></div>
+                    <div class="palette__name">Gold</div>
+                    <div class="palette__hex">#C9A84C</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--cream);"></div>
+                    <div class="palette__name">Cream</div>
+                    <div class="palette__hex">#F5EDE0</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--warm-black);"></div>
+                    <div class="palette__name">Night</div>
+                    <div class="palette__hex">#1A1714</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--espresso);"></div>
+                    <div class="palette__name">Espresso</div>
+                    <div class="palette__hex">#3D352E</div>
+                </div>
+                <div class="palette__swatch">
+                    <div class="palette__color" style="background: var(--stone);"></div>
+                    <div class="palette__name">Stone</div>
+                    <div class="palette__hex">#8A7E72</div>
+                </div>
+            </div>
+            <p class="palette__description reveal reveal-delay-3">
+                Rooted in the Mediterranean coast &mdash; olive groves, sun-warmed terracotta,
+                aged brass, and the warm cream of fresh labneh. Every color drawn from
+                the landscape that shaped Michel's craft.
+            </p>
+        </div>
+    </section>
+
+    <!-- ========================================
+         TYPOGRAPHY
+         ======================================== -->
+    <section class="typography">
+        <div class="container">
+            <div class="section-label reveal">Typography</div>
+            <div class="gold-line reveal reveal-delay-1"></div>
+            <div class="type-showcase">
+                <div class="type-row reveal reveal-delay-2">
+                    <div class="type-row__label">Display &mdash; Cinzel</div>
+                    <div class="type-row__sample--cinzel">MICH</div>
+                    <div class="type-row__note">Inspired by Roman inscriptions. Carries the weight of Mediterranean heritage with classical elegance.</div>
+                </div>
+                <div class="type-row reveal reveal-delay-3">
+                    <div class="type-row__label">Body &mdash; Cormorant Garamond</div>
+                    <div class="type-row__sample--cormorant">Autentica herencia libanesa, hecha en Mexico con pasion artesanal</div>
+                    <div class="type-row__note">Refined, editorial serif. Warm and readable. Brings storytelling to life.</div>
+                </div>
+                <div class="type-row reveal reveal-delay-4">
+                    <div class="type-row__label">Utility &mdash; Josefin Sans</div>
+                    <div class="type-row__sample--josefin">Artesanal &middot; Libanes &middot; Mexicano &middot; Clean Label &middot; Sin Aditivos</div>
+                    <div class="type-row__note">Geometric, airy sans-serif. Used for labels, navigation, and supporting text.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONCEPT 1: THE CLASSICAL WORDMARK
+         ======================================== -->
+    <section class="concept" id="concept-1">
+        <div class="container">
+            <div class="concept__number reveal">01</div>
+            <div class="section-label reveal reveal-delay-1">Concept One</div>
+            <h2 class="concept__name reveal reveal-delay-2">THE CLASSICAL WORDMARK</h2>
+            <p class="concept__desc reveal reveal-delay-3">
+                Pure typography. The name speaks with the authority of Roman
+                inscriptions &mdash; the same letterforms that have graced Mediterranean
+                architecture for millennia. An olive branch separates the brand name
+                from its descriptor, a quiet nod to the land and tradition behind every jar.
+            </p>
+
+            <div class="logo-display reveal">
+                <!-- On Cream -->
+                <div class="logo-card logo-card--cream">
+                    <div class="wordmark">
+                        <div class="wordmark__main">MICH</div>
+                        <svg class="wordmark__branch" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="0" y1="10" x2="80" y2="10" stroke="#3D352E" stroke-width="0.5"/>
+                            <ellipse cx="90" cy="10" rx="3" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.7" transform="rotate(-30 90 10)"/>
+                            <ellipse cx="97" cy="8" rx="3" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.7" transform="rotate(-10 97 8)"/>
+                            <ellipse cx="100" cy="10" rx="1.5" ry="1.5" fill="#C4763C"/>
+                            <ellipse cx="103" cy="8" rx="3" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.7" transform="rotate(10 103 8)"/>
+                            <ellipse cx="110" cy="10" rx="3" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.7" transform="rotate(30 110 10)"/>
+                            <line x1="120" y1="10" x2="200" y2="10" stroke="#3D352E" stroke-width="0.5"/>
+                        </svg>
+                        <div class="wordmark__sub">Jocoque & Yogurt</div>
+                        <div class="wordmark__tagline">Artesanal &middot; Libanes &middot; Mexicano</div>
+                    </div>
+                    <div class="logo-card__label">On Cream</div>
+                </div>
+
+                <!-- On Dark -->
+                <div class="logo-card logo-card--dark">
+                    <div class="wordmark">
+                        <div class="wordmark__main">MICH</div>
+                        <svg class="wordmark__branch" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="0" y1="10" x2="80" y2="10" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="90" cy="10" rx="3" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.7" transform="rotate(-30 90 10)"/>
+                            <ellipse cx="97" cy="8" rx="3" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.7" transform="rotate(-10 97 8)"/>
+                            <ellipse cx="100" cy="10" rx="1.5" ry="1.5" fill="#C4763C"/>
+                            <ellipse cx="103" cy="8" rx="3" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.7" transform="rotate(10 103 8)"/>
+                            <ellipse cx="110" cy="10" rx="3" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.7" transform="rotate(30 110 10)"/>
+                            <line x1="120" y1="10" x2="200" y2="10" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+                        </svg>
+                        <div class="wordmark__sub">Jocoque & Yogurt</div>
+                        <div class="wordmark__tagline">Artesanal &middot; Libanes &middot; Mexicano</div>
+                    </div>
+                    <div class="logo-card__label">On Dark</div>
+                </div>
+            </div>
+
+            <div class="logo-display reveal">
+                <!-- On Olive -->
+                <div class="logo-card logo-card--olive">
+                    <div class="wordmark">
+                        <div class="wordmark__main">MICH</div>
+                        <svg class="wordmark__branch" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="0" y1="10" x2="80" y2="10" stroke="#E8D5A3" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="90" cy="10" rx="3" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.7" transform="rotate(-30 90 10)"/>
+                            <ellipse cx="97" cy="8" rx="3" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.7" transform="rotate(-10 97 8)"/>
+                            <ellipse cx="100" cy="10" rx="1.5" ry="1.5" fill="#D4905A"/>
+                            <ellipse cx="103" cy="8" rx="3" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.7" transform="rotate(10 103 8)"/>
+                            <ellipse cx="110" cy="10" rx="3" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.7" transform="rotate(30 110 10)"/>
+                            <line x1="120" y1="10" x2="200" y2="10" stroke="#E8D5A3" stroke-width="0.5" opacity="0.4"/>
+                        </svg>
+                        <div class="wordmark__sub">Jocoque & Yogurt</div>
+                        <div class="wordmark__tagline">Artesanal &middot; Libanes &middot; Mexicano</div>
+                    </div>
+                    <div class="logo-card__label">On Deep Olive</div>
+                </div>
+
+                <!-- On Terracotta -->
+                <div class="logo-card logo-card--terracotta">
+                    <div class="wordmark">
+                        <div class="wordmark__main">MICH</div>
+                        <svg class="wordmark__branch" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="0" y1="10" x2="80" y2="10" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+                            <ellipse cx="90" cy="10" rx="3" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.7" transform="rotate(-30 90 10)"/>
+                            <ellipse cx="97" cy="8" rx="3" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.7" transform="rotate(-10 97 8)"/>
+                            <ellipse cx="100" cy="10" rx="1.5" ry="1.5" fill="#F5EDE0"/>
+                            <ellipse cx="103" cy="8" rx="3" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.7" transform="rotate(10 103 8)"/>
+                            <ellipse cx="110" cy="10" rx="3" ry="5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.7" transform="rotate(30 110 10)"/>
+                            <line x1="120" y1="10" x2="200" y2="10" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+                        </svg>
+                        <div class="wordmark__sub">Jocoque & Yogurt</div>
+                        <div class="wordmark__tagline">Artesanal &middot; Libanes &middot; Mexicano</div>
+                    </div>
+                    <div class="logo-card__label">On Terracotta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONCEPT 2: THE MEDITERRANEAN SEAL
+         ======================================== -->
+    <section class="concept" id="concept-2">
+        <div class="container">
+            <div class="concept__number reveal">02</div>
+            <div class="section-label reveal reveal-delay-1">Concept Two</div>
+            <h2 class="concept__name reveal reveal-delay-2">THE MEDITERRANEAN SEAL</h2>
+            <p class="concept__desc reveal reveal-delay-3">
+                A circular emblem that carries the gravitas of a heritage mark &mdash;
+                like a wax seal on a letter from the old world. The double-ring border
+                draws from Mediterranean mosaic patterns. It says: this has been
+                crafted with intention, and it has roots.
+            </p>
+
+            <div class="logo-display reveal">
+                <!-- On Cream -->
+                <div class="logo-card logo-card--cream">
+                    <div class="seal-logo">
+                        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Outer decorative ring -->
+                            <circle cx="150" cy="150" r="140" fill="none" stroke="#1A1714" stroke-width="1"/>
+                            <circle cx="150" cy="150" r="135" fill="none" stroke="#1A1714" stroke-width="0.3"/>
+                            <!-- Dot pattern on outer ring -->
+                            <g fill="#C4763C" opacity="0.7">
+                                <circle cx="150" cy="11" r="1.5"/><circle cx="185" cy="13" r="1.5"/><circle cx="218" cy="22" r="1.5"/>
+                                <circle cx="248" cy="38" r="1.5"/><circle cx="272" cy="60" r="1.5"/><circle cx="288" cy="88" r="1.5"/>
+                                <circle cx="297" cy="118" r="1.5"/><circle cx="299" cy="150" r="1.5"/><circle cx="293" cy="182" r="1.5"/>
+                                <circle cx="280" cy="212" r="1.5"/><circle cx="262" cy="238" r="1.5"/><circle cx="238" cy="258" r="1.5"/>
+                                <circle cx="210" cy="273" r="1.5"/><circle cx="180" cy="280" r="1.5"/><circle cx="150" cy="290" r="1.5"/>
+                                <circle cx="120" cy="280" r="1.5"/><circle cx="90" cy="273" r="1.5"/><circle cx="62" cy="258" r="1.5"/>
+                                <circle cx="38" cy="238" r="1.5"/><circle cx="20" cy="212" r="1.5"/><circle cx="7" cy="182" r="1.5"/>
+                                <circle cx="1" cy="150" r="1.5"/><circle cx="3" cy="118" r="1.5"/><circle cx="12" cy="88" r="1.5"/>
+                                <circle cx="28" cy="60" r="1.5"/><circle cx="52" cy="38" r="1.5"/><circle cx="82" cy="22" r="1.5"/>
+                                <circle cx="115" cy="13" r="1.5"/>
+                            </g>
+                            <!-- Inner ring -->
+                            <circle cx="150" cy="150" r="115" fill="none" stroke="#1A1714" stroke-width="0.5"/>
+                            <!-- Inner fill area -->
+                            <circle cx="150" cy="150" r="110" fill="none" stroke="#1A1714" stroke-width="0.3"/>
+                            <!-- Curved text paths -->
+                            <defs>
+                                <path id="topArc" d="M 50,150 A 100,100 0 0,1 250,150"/>
+                                <path id="bottomArc" d="M 248,158 A 100,100 0 0,1 52,158"/>
+                            </defs>
+                            <!-- Top text -->
+                            <text font-family="Josefin Sans, sans-serif" font-size="10" font-weight="300" letter-spacing="4" fill="#3D352E">
+                                <textPath href="#topArc" startOffset="50%" text-anchor="middle">JOCOQUE &amp; YOGURT</textPath>
+                            </text>
+                            <!-- Bottom text -->
+                            <text font-family="Josefin Sans, sans-serif" font-size="9" font-weight="300" letter-spacing="3.5" fill="#3D352E">
+                                <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">PUEBLA &middot; MEXICO</textPath>
+                            </text>
+                            <!-- Center: MICH -->
+                            <text x="150" y="155" font-family="Cinzel, serif" font-size="52" font-weight="700" fill="#1A1714" text-anchor="middle" letter-spacing="12">MICH</text>
+                            <!-- Small olive branches flanking -->
+                            <g transform="translate(75, 168)" opacity="0.6">
+                                <ellipse cx="5" cy="0" rx="3" ry="6" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-40 5 0)"/>
+                                <ellipse cx="12" cy="-2" rx="3" ry="6" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-20 12 -2)"/>
+                                <ellipse cx="19" cy="-1" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-5 19 -1)"/>
+                                <line x1="0" y1="3" x2="24" y2="-1" stroke="#3D6B4F" stroke-width="0.5"/>
+                            </g>
+                            <g transform="translate(200, 168) scale(-1,1)" opacity="0.6">
+                                <ellipse cx="-5" cy="0" rx="3" ry="6" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-40 -5 0)"/>
+                                <ellipse cx="-12" cy="-2" rx="3" ry="6" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-20 -12 -2)"/>
+                                <ellipse cx="-19" cy="-1" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.8" transform="rotate(-5 -19 -1)"/>
+                                <line x1="0" y1="3" x2="-24" y2="-1" stroke="#3D6B4F" stroke-width="0.5"/>
+                            </g>
+                            <!-- Divider lines -->
+                            <line x1="65" y1="126" x2="105" y2="126" stroke="#1A1714" stroke-width="0.4"/>
+                            <line x1="195" y1="126" x2="235" y2="126" stroke="#1A1714" stroke-width="0.4"/>
+                            <!-- Small decorative diamond -->
+                            <polygon points="150,122 153,126 150,130 147,126" fill="#C4763C" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Cream</div>
+                </div>
+
+                <!-- On Dark -->
+                <div class="logo-card logo-card--dark">
+                    <div class="seal-logo">
+                        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="150" cy="150" r="140" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.6"/>
+                            <circle cx="150" cy="150" r="135" fill="none" stroke="#C9A84C" stroke-width="0.3" opacity="0.3"/>
+                            <g fill="#C4763C" opacity="0.5">
+                                <circle cx="150" cy="11" r="1.5"/><circle cx="185" cy="13" r="1.5"/><circle cx="218" cy="22" r="1.5"/>
+                                <circle cx="248" cy="38" r="1.5"/><circle cx="272" cy="60" r="1.5"/><circle cx="288" cy="88" r="1.5"/>
+                                <circle cx="297" cy="118" r="1.5"/><circle cx="299" cy="150" r="1.5"/><circle cx="293" cy="182" r="1.5"/>
+                                <circle cx="280" cy="212" r="1.5"/><circle cx="262" cy="238" r="1.5"/><circle cx="238" cy="258" r="1.5"/>
+                                <circle cx="210" cy="273" r="1.5"/><circle cx="180" cy="280" r="1.5"/><circle cx="150" cy="290" r="1.5"/>
+                                <circle cx="120" cy="280" r="1.5"/><circle cx="90" cy="273" r="1.5"/><circle cx="62" cy="258" r="1.5"/>
+                                <circle cx="38" cy="238" r="1.5"/><circle cx="20" cy="212" r="1.5"/><circle cx="7" cy="182" r="1.5"/>
+                                <circle cx="1" cy="150" r="1.5"/><circle cx="3" cy="118" r="1.5"/><circle cx="12" cy="88" r="1.5"/>
+                                <circle cx="28" cy="60" r="1.5"/><circle cx="52" cy="38" r="1.5"/><circle cx="82" cy="22" r="1.5"/>
+                                <circle cx="115" cy="13" r="1.5"/>
+                            </g>
+                            <circle cx="150" cy="150" r="115" fill="none" stroke="#C9A84C" stroke-width="0.4" opacity="0.5"/>
+                            <circle cx="150" cy="150" r="110" fill="none" stroke="#C9A84C" stroke-width="0.2" opacity="0.3"/>
+                            <defs>
+                                <path id="topArc2" d="M 50,150 A 100,100 0 0,1 250,150"/>
+                                <path id="bottomArc2" d="M 248,158 A 100,100 0 0,1 52,158"/>
+                            </defs>
+                            <text font-family="Josefin Sans, sans-serif" font-size="10" font-weight="300" letter-spacing="4" fill="#E8D5A3">
+                                <textPath href="#topArc2" startOffset="50%" text-anchor="middle">JOCOQUE &amp; YOGURT</textPath>
+                            </text>
+                            <text font-family="Josefin Sans, sans-serif" font-size="9" font-weight="300" letter-spacing="3.5" fill="#8A7E72">
+                                <textPath href="#bottomArc2" startOffset="50%" text-anchor="middle">PUEBLA &middot; MEXICO</textPath>
+                            </text>
+                            <text x="150" y="155" font-family="Cinzel, serif" font-size="52" font-weight="700" fill="#F5EDE0" text-anchor="middle" letter-spacing="12">MICH</text>
+                            <g transform="translate(75, 168)" opacity="0.5">
+                                <ellipse cx="5" cy="0" rx="3" ry="6" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-40 5 0)"/>
+                                <ellipse cx="12" cy="-2" rx="3" ry="6" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-20 12 -2)"/>
+                                <ellipse cx="19" cy="-1" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-5 19 -1)"/>
+                                <line x1="0" y1="3" x2="24" y2="-1" stroke="#6B8F7B" stroke-width="0.5"/>
+                            </g>
+                            <g transform="translate(200, 168) scale(-1,1)" opacity="0.5">
+                                <ellipse cx="-5" cy="0" rx="3" ry="6" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-40 -5 0)"/>
+                                <ellipse cx="-12" cy="-2" rx="3" ry="6" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-20 -12 -2)"/>
+                                <ellipse cx="-19" cy="-1" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.8" transform="rotate(-5 -19 -1)"/>
+                                <line x1="0" y1="3" x2="-24" y2="-1" stroke="#6B8F7B" stroke-width="0.5"/>
+                            </g>
+                            <line x1="65" y1="126" x2="105" y2="126" stroke="#C9A84C" stroke-width="0.3" opacity="0.5"/>
+                            <line x1="195" y1="126" x2="235" y2="126" stroke="#C9A84C" stroke-width="0.3" opacity="0.5"/>
+                            <polygon points="150,122 153,126 150,130 147,126" fill="#C4763C" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Dark</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONCEPT 3: THE ARCH
+         ======================================== -->
+    <section class="concept" id="concept-3">
+        <div class="container">
+            <div class="concept__number reveal">03</div>
+            <div class="section-label reveal reveal-delay-1">Concept Three</div>
+            <h2 class="concept__name reveal reveal-delay-2">THE ARCH</h2>
+            <p class="concept__desc reveal reveal-delay-3">
+                The pointed arch &mdash; a defining element of Lebanese and broader
+                Mediterranean architecture. It frames the name like a doorway into
+                tradition, inviting the viewer to enter Michel's world. Simple,
+                structural, unmistakably rooted in place.
+            </p>
+
+            <div class="logo-display reveal">
+                <!-- On Cream -->
+                <div class="logo-card logo-card--cream">
+                    <div class="arch-logo">
+                        <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- The pointed arch -->
+                            <path d="M 30,280 L 30,120 Q 30,50 110,20 Q 190,50 190,120 L 190,280"
+                                  fill="none" stroke="#1A1714" stroke-width="1.5"/>
+                            <!-- Inner arch (thinner) -->
+                            <path d="M 40,275 L 40,125 Q 40,60 110,32 Q 180,60 180,125 L 180,275"
+                                  fill="none" stroke="#1A1714" stroke-width="0.4"/>
+                            <!-- MICH text -->
+                            <text x="110" y="170" font-family="Cinzel, serif" font-size="44" font-weight="700" fill="#1A1714" text-anchor="middle" letter-spacing="10">MICH</text>
+                            <!-- Horizontal dividers -->
+                            <line x1="55" y1="145" x2="165" y2="145" stroke="#1A1714" stroke-width="0.3"/>
+                            <line x1="55" y1="185" x2="165" y2="185" stroke="#1A1714" stroke-width="0.3"/>
+                            <!-- Descriptor below -->
+                            <text x="110" y="210" font-family="Cormorant Garamond, serif" font-size="11" font-weight="400" fill="#3D352E" text-anchor="middle" letter-spacing="4">JOCOQUE &amp; YOGURT</text>
+                            <!-- Small olive element at keystone -->
+                            <ellipse cx="110" cy="38" rx="3" ry="6" fill="none" stroke="#3D6B4F" stroke-width="0.7"/>
+                            <circle cx="110" cy="38" r="1.2" fill="#C4763C"/>
+                            <!-- Tagline at base -->
+                            <text x="110" y="260" font-family="Josefin Sans, sans-serif" font-size="6.5" font-weight="300" fill="#8A7E72" text-anchor="middle" letter-spacing="3.5">ARTESANAL &middot; LIBANES &middot; MEXICANO</text>
+                            <!-- Base line -->
+                            <line x1="30" y1="280" x2="190" y2="280" stroke="#1A1714" stroke-width="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Cream</div>
+                </div>
+
+                <!-- On Dark -->
+                <div class="logo-card logo-card--dark">
+                    <div class="arch-logo">
+                        <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 30,280 L 30,120 Q 30,50 110,20 Q 190,50 190,120 L 190,280"
+                                  fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.7"/>
+                            <path d="M 40,275 L 40,125 Q 40,60 110,32 Q 180,60 180,125 L 180,275"
+                                  fill="none" stroke="#C9A84C" stroke-width="0.3" opacity="0.4"/>
+                            <text x="110" y="170" font-family="Cinzel, serif" font-size="44" font-weight="700" fill="#F5EDE0" text-anchor="middle" letter-spacing="10">MICH</text>
+                            <line x1="55" y1="145" x2="165" y2="145" stroke="#C9A84C" stroke-width="0.2" opacity="0.4"/>
+                            <line x1="55" y1="185" x2="165" y2="185" stroke="#C9A84C" stroke-width="0.2" opacity="0.4"/>
+                            <text x="110" y="210" font-family="Cormorant Garamond, serif" font-size="11" font-weight="400" fill="#E8D5A3" text-anchor="middle" letter-spacing="4">JOCOQUE &amp; YOGURT</text>
+                            <ellipse cx="110" cy="38" rx="3" ry="6" fill="none" stroke="#6B8F7B" stroke-width="0.7"/>
+                            <circle cx="110" cy="38" r="1.2" fill="#C4763C"/>
+                            <text x="110" y="260" font-family="Josefin Sans, sans-serif" font-size="6.5" font-weight="300" fill="#8A7E72" text-anchor="middle" letter-spacing="3.5">ARTESANAL &middot; LIBANES &middot; MEXICANO</text>
+                            <line x1="30" y1="280" x2="190" y2="280" stroke="#C9A84C" stroke-width="0.3" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Dark</div>
+                </div>
+            </div>
+
+            <div class="logo-display reveal">
+                <!-- On Olive -->
+                <div class="logo-card logo-card--olive">
+                    <div class="arch-logo">
+                        <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 30,280 L 30,120 Q 30,50 110,20 Q 190,50 190,120 L 190,280"
+                                  fill="none" stroke="#E8D5A3" stroke-width="1" opacity="0.6"/>
+                            <path d="M 40,275 L 40,125 Q 40,60 110,32 Q 180,60 180,125 L 180,275"
+                                  fill="none" stroke="#E8D5A3" stroke-width="0.3" opacity="0.3"/>
+                            <text x="110" y="170" font-family="Cinzel, serif" font-size="44" font-weight="700" fill="#FAF7F2" text-anchor="middle" letter-spacing="10">MICH</text>
+                            <line x1="55" y1="145" x2="165" y2="145" stroke="#E8D5A3" stroke-width="0.2" opacity="0.3"/>
+                            <line x1="55" y1="185" x2="165" y2="185" stroke="#E8D5A3" stroke-width="0.2" opacity="0.3"/>
+                            <text x="110" y="210" font-family="Cormorant Garamond, serif" font-size="11" font-weight="400" fill="#F0E6CC" text-anchor="middle" letter-spacing="4">JOCOQUE &amp; YOGURT</text>
+                            <ellipse cx="110" cy="38" rx="3" ry="6" fill="none" stroke="#9BB09F" stroke-width="0.7"/>
+                            <circle cx="110" cy="38" r="1.2" fill="#D4905A"/>
+                            <text x="110" y="260" font-family="Josefin Sans, sans-serif" font-size="6.5" font-weight="300" fill="#9BB09F" text-anchor="middle" letter-spacing="3.5">ARTESANAL &middot; LIBANES &middot; MEXICANO</text>
+                            <line x1="30" y1="280" x2="190" y2="280" stroke="#E8D5A3" stroke-width="0.3" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Deep Olive</div>
+                </div>
+
+                <!-- On Terracotta -->
+                <div class="logo-card logo-card--terracotta">
+                    <div class="arch-logo">
+                        <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 30,280 L 30,120 Q 30,50 110,20 Q 190,50 190,120 L 190,280"
+                                  fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                            <path d="M 40,275 L 40,125 Q 40,60 110,32 Q 180,60 180,125 L 180,275"
+                                  fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.3"/>
+                            <text x="110" y="170" font-family="Cinzel, serif" font-size="44" font-weight="700" fill="#FAF7F2" text-anchor="middle" letter-spacing="10">MICH</text>
+                            <line x1="55" y1="145" x2="165" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="0.2"/>
+                            <line x1="55" y1="185" x2="165" y2="185" stroke="rgba(255,255,255,0.2)" stroke-width="0.2"/>
+                            <text x="110" y="210" font-family="Cormorant Garamond, serif" font-size="11" font-weight="400" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="4">JOCOQUE &amp; YOGURT</text>
+                            <ellipse cx="110" cy="38" rx="3" ry="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.7"/>
+                            <circle cx="110" cy="38" r="1.2" fill="#F5EDE0"/>
+                            <text x="110" y="260" font-family="Josefin Sans, sans-serif" font-size="6.5" font-weight="300" fill="rgba(255,255,255,0.45)" text-anchor="middle" letter-spacing="3.5">ARTESANAL &middot; LIBANES &middot; MEXICANO</text>
+                            <line x1="30" y1="280" x2="190" y2="280" stroke="rgba(255,255,255,0.3)" stroke-width="0.3"/>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">On Terracotta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONCEPT 4: THE HERITAGE MONOGRAM
+         ======================================== -->
+    <section class="concept" id="concept-4">
+        <div class="container">
+            <div class="concept__number reveal">04</div>
+            <div class="section-label reveal reveal-delay-1">Concept Four</div>
+            <h2 class="concept__name reveal reveal-delay-2">THE HERITAGE MONOGRAM</h2>
+            <p class="concept__desc reveal reveal-delay-3">
+                A stylized &ldquo;M&rdquo; that stands alone as an icon &mdash; for jar lids,
+                favicons, social avatars, and wax seals. Olive branches woven into
+                the letterform connect it to the land. Paired with the wordmark
+                for a complete lockup.
+            </p>
+
+            <div class="logo-display reveal">
+                <!-- Monogram standalone on Cream -->
+                <div class="logo-card logo-card--cream">
+                    <div class="monogram-logo">
+                        <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Stylized M with serifs -->
+                            <text x="100" y="140" font-family="Bodoni Moda, serif" font-size="140" font-weight="600" fill="#1A1714" text-anchor="middle" letter-spacing="0">M</text>
+                            <!-- Olive branch left -->
+                            <g transform="translate(28, 155)" opacity="0.6">
+                                <path d="M 0,0 Q 8,-8 18,-5 Q 28,-2 35,5" fill="none" stroke="#3D6B4F" stroke-width="0.7"/>
+                                <ellipse cx="8" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-50 8 -6)"/>
+                                <ellipse cx="18" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-25 18 -6)"/>
+                                <ellipse cx="27" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-5 27 -2)"/>
+                            </g>
+                            <!-- Olive branch right -->
+                            <g transform="translate(138, 155)" opacity="0.6">
+                                <path d="M 35,0 Q 27,-8 17,-5 Q 7,-2 0,5" fill="none" stroke="#3D6B4F" stroke-width="0.7"/>
+                                <ellipse cx="27" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(50 27 -6)"/>
+                                <ellipse cx="17" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(25 17 -6)"/>
+                                <ellipse cx="8" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(5 8 -2)"/>
+                            </g>
+                            <!-- Small olive fruit -->
+                            <circle cx="100" cy="158" r="2" fill="#C4763C" opacity="0.7"/>
+                            <!-- Subtitle -->
+                            <text x="100" y="195" font-family="Josefin Sans, sans-serif" font-size="8" font-weight="300" fill="#8A7E72" text-anchor="middle" letter-spacing="6">MICH</text>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">Monogram &mdash; Cream</div>
+                </div>
+
+                <!-- Monogram standalone on Dark -->
+                <div class="logo-card logo-card--dark">
+                    <div class="monogram-logo">
+                        <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                            <text x="100" y="140" font-family="Bodoni Moda, serif" font-size="140" font-weight="600" fill="#F5EDE0" text-anchor="middle" letter-spacing="0">M</text>
+                            <g transform="translate(28, 155)" opacity="0.5">
+                                <path d="M 0,0 Q 8,-8 18,-5 Q 28,-2 35,5" fill="none" stroke="#6B8F7B" stroke-width="0.7"/>
+                                <ellipse cx="8" cy="-6" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(-50 8 -6)"/>
+                                <ellipse cx="18" cy="-6" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(-25 18 -6)"/>
+                                <ellipse cx="27" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(-5 27 -2)"/>
+                            </g>
+                            <g transform="translate(138, 155)" opacity="0.5">
+                                <path d="M 35,0 Q 27,-8 17,-5 Q 7,-2 0,5" fill="none" stroke="#6B8F7B" stroke-width="0.7"/>
+                                <ellipse cx="27" cy="-6" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(50 27 -6)"/>
+                                <ellipse cx="17" cy="-6" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(25 17 -6)"/>
+                                <ellipse cx="8" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(5 8 -2)"/>
+                            </g>
+                            <circle cx="100" cy="158" r="2" fill="#C4763C" opacity="0.6"/>
+                            <text x="100" y="195" font-family="Josefin Sans, sans-serif" font-size="8" font-weight="300" fill="#8A7E72" text-anchor="middle" letter-spacing="6">MICH</text>
+                        </svg>
+                    </div>
+                    <div class="logo-card__label">Monogram &mdash; Dark</div>
+                </div>
+            </div>
+
+            <!-- Lockup versions -->
+            <div class="logo-display reveal">
+                <!-- Lockup on Cream -->
+                <div class="logo-card logo-card--cream">
+                    <div class="monogram-lockup">
+                        <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                            <text x="100" y="140" font-family="Bodoni Moda, serif" font-size="140" font-weight="600" fill="#1A1714" text-anchor="middle">M</text>
+                            <g transform="translate(28, 155)" opacity="0.6">
+                                <path d="M 0,0 Q 8,-8 18,-5 Q 28,-2 35,5" fill="none" stroke="#3D6B4F" stroke-width="0.7"/>
+                                <ellipse cx="8" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-50 8 -6)"/>
+                                <ellipse cx="18" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-25 18 -6)"/>
+                                <ellipse cx="27" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(-5 27 -2)"/>
+                            </g>
+                            <g transform="translate(138, 155)" opacity="0.6">
+                                <path d="M 35,0 Q 27,-8 17,-5 Q 7,-2 0,5" fill="none" stroke="#3D6B4F" stroke-width="0.7"/>
+                                <ellipse cx="27" cy="-6" rx="2.5" ry="5" fill="none" stroke="#6B8F7B" stroke-width="0.6" transform="rotate(50 27 -6)"/>
+                                <ellipse cx="17" cy="-6" rx="2.5" ry="5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(25 17 -6)"/>
+                                <ellipse cx="8" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#3D6B4F" stroke-width="0.6" transform="rotate(5 8 -2)"/>
+                            </g>
+                            <circle cx="100" cy="158" r="2" fill="#C4763C" opacity="0.7"/>
+                        </svg>
+                        <div class="monogram-lockup__text">
+                            <div class="monogram-lockup__name">MICH</div>
+                            <div class="monogram-lockup__desc">Jocoque & Yogurt</div>
+                        </div>
+                    </div>
+                    <div class="logo-card__label">Lockup &mdash; Cream</div>
+                </div>
+
+                <!-- Lockup on Dark -->
+                <div class="logo-card logo-card--olive">
+                    <div class="monogram-lockup">
+                        <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                            <text x="100" y="140" font-family="Bodoni Moda, serif" font-size="140" font-weight="600" fill="#FAF7F2" text-anchor="middle">M</text>
+                            <g transform="translate(28, 155)" opacity="0.5">
+                                <path d="M 0,0 Q 8,-8 18,-5 Q 28,-2 35,5" fill="none" stroke="#9BB09F" stroke-width="0.7"/>
+                                <ellipse cx="8" cy="-6" rx="2.5" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(-50 8 -6)"/>
+                                <ellipse cx="18" cy="-6" rx="2.5" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(-25 18 -6)"/>
+                                <ellipse cx="27" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(-5 27 -2)"/>
+                            </g>
+                            <g transform="translate(138, 155)" opacity="0.5">
+                                <path d="M 35,0 Q 27,-8 17,-5 Q 7,-2 0,5" fill="none" stroke="#9BB09F" stroke-width="0.7"/>
+                                <ellipse cx="27" cy="-6" rx="2.5" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(50 27 -6)"/>
+                                <ellipse cx="17" cy="-6" rx="2.5" ry="5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(25 17 -6)"/>
+                                <ellipse cx="8" cy="-2" rx="2.5" ry="4.5" fill="none" stroke="#9BB09F" stroke-width="0.6" transform="rotate(5 8 -2)"/>
+                            </g>
+                            <circle cx="100" cy="158" r="2" fill="#D4905A" opacity="0.6"/>
+                        </svg>
+                        <div class="monogram-lockup__text">
+                            <div class="monogram-lockup__name">MICH</div>
+                            <div class="monogram-lockup__desc">Jocoque & Yogurt</div>
+                        </div>
+                    </div>
+                    <div class="logo-card__label">Lockup &mdash; Deep Olive</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PACKAGING APPLICATIONS
+         ======================================== -->
+    <section class="applications">
+        <div class="container">
+            <div class="section-label reveal">Applications</div>
+            <div class="gold-line reveal reveal-delay-1"></div>
+            <div class="app-grid reveal reveal-delay-2">
+                <!-- Jar mockup 1 -->
+                <div class="app-mockup">
+                    <div class="app-mockup__visual" style="background: linear-gradient(135deg, #F5EDE0, #E8D5A3);">
+                        <svg class="app-mockup__jar" viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Jar shape -->
+                            <rect x="20" y="30" width="100" height="150" rx="8" fill="white" stroke="#1A1714" stroke-width="0.8"/>
+                            <!-- Lid -->
+                            <rect x="15" y="15" width="110" height="20" rx="4" fill="#1B3A2D" stroke="#1A1714" stroke-width="0.5"/>
+                            <!-- Label area -->
+                            <rect x="30" y="55" width="80" height="100" rx="2" fill="none" stroke="#1A1714" stroke-width="0.3"/>
+                            <!-- Logo on label -->
+                            <text x="70" y="95" font-family="Cinzel, serif" font-size="20" font-weight="700" fill="#1A1714" text-anchor="middle" letter-spacing="4">MICH</text>
+                            <line x1="40" y1="102" x2="100" y2="102" stroke="#C4763C" stroke-width="0.5"/>
+                            <text x="70" y="115" font-family="Cormorant Garamond, serif" font-size="7" fill="#3D352E" text-anchor="middle" letter-spacing="2">YOGURT GRIEGO</text>
+                            <text x="70" y="135" font-family="Josefin Sans, sans-serif" font-size="4.5" fill="#8A7E72" text-anchor="middle" letter-spacing="1.5">ARTESANAL &middot; 500g</text>
+                        </svg>
+                    </div>
+                    <div class="app-mockup__label">
+                        <div class="app-mockup__title">Glass Jar</div>
+                        <div class="app-mockup__note">Wordmark on white label, deep olive lid</div>
+                    </div>
+                </div>
+
+                <!-- Jar mockup 2 -->
+                <div class="app-mockup">
+                    <div class="app-mockup__visual" style="background: linear-gradient(135deg, #2E2A25, #1A1714);">
+                        <svg class="app-mockup__jar" viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="100" height="150" rx="8" fill="#1B3A2D" stroke="#C9A84C" stroke-width="0.5"/>
+                            <rect x="15" y="15" width="110" height="20" rx="4" fill="#C4763C"/>
+                            <rect x="30" y="55" width="80" height="100" rx="2" fill="none" stroke="#C9A84C" stroke-width="0.2" opacity="0.4"/>
+                            <text x="70" y="95" font-family="Cinzel, serif" font-size="20" font-weight="700" fill="#F5EDE0" text-anchor="middle" letter-spacing="4">MICH</text>
+                            <line x1="40" y1="102" x2="100" y2="102" stroke="#C9A84C" stroke-width="0.4" opacity="0.5"/>
+                            <text x="70" y="115" font-family="Cormorant Garamond, serif" font-size="7" fill="#E8D5A3" text-anchor="middle" letter-spacing="2">LABNEH</text>
+                            <text x="70" y="135" font-family="Josefin Sans, sans-serif" font-size="4.5" fill="#9BB09F" text-anchor="middle" letter-spacing="1.5">JOCOQUE SECO &middot; 250g</text>
+                        </svg>
+                    </div>
+                    <div class="app-mockup__label">
+                        <div class="app-mockup__title">Premium Jar</div>
+                        <div class="app-mockup__note">Deep olive glass, gold details, terracotta lid</div>
+                    </div>
+                </div>
+
+                <!-- Jar mockup 3 -->
+                <div class="app-mockup">
+                    <div class="app-mockup__visual" style="background: linear-gradient(135deg, #F5EDE0, #FAF7F2);">
+                        <svg class="app-mockup__jar" viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="100" height="150" rx="8" fill="white" stroke="#1A1714" stroke-width="0.8"/>
+                            <rect x="15" y="15" width="110" height="20" rx="4" fill="#C4763C"/>
+                            <!-- Seal on jar -->
+                            <circle cx="70" cy="90" r="30" fill="none" stroke="#1A1714" stroke-width="0.6"/>
+                            <circle cx="70" cy="90" r="27" fill="none" stroke="#1A1714" stroke-width="0.2"/>
+                            <text x="70" y="95" font-family="Cinzel, serif" font-size="16" font-weight="700" fill="#1A1714" text-anchor="middle" letter-spacing="3">MICH</text>
+                            <text x="70" y="130" font-family="Cormorant Garamond, serif" font-size="7" fill="#3D352E" text-anchor="middle" letter-spacing="2">TZATZIKI</text>
+                            <text x="70" y="145" font-family="Josefin Sans, sans-serif" font-size="4.5" fill="#8A7E72" text-anchor="middle" letter-spacing="1.5">SALSA GRIEGA &middot; 200g</text>
+                        </svg>
+                    </div>
+                    <div class="app-mockup__label">
+                        <div class="app-mockup__title">Seal Application</div>
+                        <div class="app-mockup__note">Medallion seal for product line extensions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <section class="footer">
+        <div class="container">
+            <div class="footer__brand">MICH</div>
+            <div class="footer__tagline">Jocoque & Yogurt &mdash; Artesanal, Libanes, Mexicano</div>
+            <div class="gold-line gold-line--center"></div>
+            <div class="footer__copy">Brand Identity Explorations &middot; February 2026 &middot; Confidential</div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SCROLL REVEAL SCRIPT
+         ======================================== -->
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
