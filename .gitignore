@@ -27,6 +27,9 @@ Desktop.ini
 .idea/
 .cursor/
 
+# Local dev copy (canonical project is at repo root)
+mitchweb/
+
 # Media (large binary files)
 MichMedia/*.psd
 MichMedia/*.xlsx

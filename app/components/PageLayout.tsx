@@ -9,6 +9,7 @@ import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
 import {CartMain} from '~/components/CartMain';
+import {BottomTabBar} from '~/components/BottomTabBar';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,
@@ -34,6 +35,12 @@ export function PageLayout({
 }: PageLayoutProps) {
   return (
     <Aside.Provider>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-gold focus:text-dark focus:px-4 focus:py-2 focus:rounded-md focus:font-sans focus:text-sm"
+      >
+        Ir al contenido
+      </a>
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
@@ -45,20 +52,25 @@ export function PageLayout({
           publicStoreDomain={publicStoreDomain}
         />
       )}
-      <main>{children}</main>
+      <main id="main-content" className="min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          {children}
+        </div>
+      </main>
       <Footer
         footer={footer}
         header={header}
         publicStoreDomain={publicStoreDomain}
       />
+      <BottomTabBar cart={cart} />
     </Aside.Provider>
   );
 }
 
 function CartAside({cart}: {cart: PageLayoutProps['cart']}) {
   return (
-    <Aside type="cart" heading="CART">
-      <Suspense fallback={<p>Loading cart ...</p>}>
+    <Aside type="cart" heading="CARRITO">
+      <Suspense fallback={<p>Cargando carrito...</p>}>
         <Await resolve={cart}>
           {(cart) => {
             return <CartMain cart={cart} layout="aside" />;
@@ -72,7 +84,7 @@ function CartAside({cart}: {cart: PageLayoutProps['cart']}) {
 function SearchAside() {
   const queriesDatalistId = useId();
   return (
-    <Aside type="search" heading="SEARCH">
+    <Aside type="search" heading="BUSCAR">
       <div className="predictive-search">
         <br />
         <SearchFormPredictive>
@@ -82,13 +94,13 @@ function SearchAside() {
                 name="q"
                 onChange={fetchResults}
                 onFocus={fetchResults}
-                placeholder="Search"
+                placeholder="Buscar productos..."
                 ref={inputRef}
                 type="search"
                 list={queriesDatalistId}
               />
               &nbsp;
-              <button onClick={goToSearch}>Search</button>
+              <button onClick={goToSearch}>Buscar</button>
             </>
           )}
         </SearchFormPredictive>
@@ -98,7 +110,7 @@ function SearchAside() {
             const {articles, collections, pages, products, queries} = items;
 
             if (state === 'loading' && term.current) {
-              return <div>Loading...</div>;
+              return <div>Cargando...</div>;
             }
 
             if (!total) {
@@ -137,7 +149,7 @@ function SearchAside() {
                     to={`${SEARCH_ENDPOINT}?q=${term.current}`}
                   >
                     <p>
-                      View all results for <q>{term.current}</q>
+                      Ver todos los resultados para <q>{term.current}</q>
                       &nbsp; →
                     </p>
                   </Link>
@@ -161,7 +173,7 @@ function MobileMenuAside({
   return (
     header.menu &&
     header.shop.primaryDomain?.url && (
-      <Aside type="mobile" heading="MENU">
+      <Aside type="mobile" heading="MENÚ">
         <HeaderMenu
           menu={header.menu}
           viewport="mobile"

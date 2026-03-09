@@ -10,7 +10,23 @@
       "WebSearch",
       "WebFetch(domain:dev.to)",
       "WebFetch(domain:shopify.dev)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "WebFetch(domain:hydrogen.shopify.dev)",
+      "WebFetch(domain:ui.shadcn.com)",
+      "Bash(npm create:*)",
+      "Bash(timeout 30 npx shopify:*)",
+      "Bash(npm install:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh pr:*)",
+      "Bash(npx shopify:*)",
+      "Bash(gh run:*)",
+      "Bash(rm:*)",
+      "Bash(npx shadcn@latest:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cp:*)"
     ]
   }
 }
