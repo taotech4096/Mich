@@ -236,7 +236,7 @@ This document provides the complete epic and story breakdown for MitchWeb, decom
 - FR46: Epic 10 — Post-purchase follow-up emails (Phase 2)
 - FR47: Epic 10 — Subscription dunning emails (Phase 2)
 - FR48: Epic 10 — Win-back emails (Phase 2)
-- FR49: Epic 7 — Product/pricing/inventory management via Shopify Admin
+- FR49: Epic 1 — Shopify Admin metafield schema configuration (moved from Epic 7 to unblock Epics 2, 3, 5, 6)
 - FR50: Epic 7 — Order fulfillment with delivery day visibility
 - FR51: Epic 7 — Customer data and order history via Shopify Admin
 - FR52: Epic 8 — Subscription caps and waitlist settings (Phase 2)
@@ -245,8 +245,8 @@ This document provides the complete epic and story breakdown for MitchWeb, decom
 ## Epic List
 
 ### Epic 1: Branded Storefront Foundation
-Visitors arrive at a premium, mobile-first branded storefront with navigation, WhatsApp access, and the Mich design identity — the foundation everything else builds on.
-**FRs covered:** FR40, FR41, FR42
+Visitors arrive at a premium, mobile-first branded storefront with navigation, WhatsApp access, the Mich design identity, and Shopify Admin metafield schema — the foundation everything else builds on.
+**FRs covered:** FR40, FR41, FR42, FR49
 
 ### Epic 2: Product Discovery & Catalog
 Customers can browse, filter, and explore the full product catalog with rich product detail pages showing nutritional macros, keto badges, heritage storytelling, and real-time availability.
@@ -269,8 +269,8 @@ Customers can ask product questions, browse the catalog, check availability, and
 **FRs covered:** FR19, FR20, FR21, FR22, FR23, FR24, FR25
 
 ### Epic 7: Operations & Administration
-The operator can manage products, fulfill orders with delivery day visibility, configure delivery zones, and manage the storefront through Shopify Admin.
-**FRs covered:** FR49, FR50, FR51, FR53
+The operator can fulfill orders with delivery day visibility, configure delivery zones, and track storefront performance via analytics through Shopify Admin.
+**FRs covered:** FR50, FR51, FR53
 
 ### Epic 8: Subscription Management (Phase 2)
 Customers can subscribe to recurring deliveries, choose their delivery day, manage/pause/cancel subscriptions, and receive pre-delivery notifications.
@@ -289,6 +289,8 @@ Customers receive automated email flows (welcome, abandoned cart, post-purchase,
 Visitors arrive at a premium, mobile-first branded storefront with navigation, WhatsApp access, and the Mich design identity — the foundation everything else builds on.
 
 ### Story 1.1: Project Initialization & Deployment Pipeline
+
+**Implements:** *(infrastructure — no direct FR)*
 
 As a developer,
 I want to initialize the Hydrogen Skeleton project with Tailwind CSS and deploy it to Oxygen via GitHub,
@@ -316,6 +318,8 @@ So that we have a working, deployed storefront foundation to build upon.
 **Then** the default skeleton page loads with LCP < 2.5s
 
 ### Story 1.2: Design System & Token Configuration
+
+**Implements:** *(infrastructure — no direct FR)*
 
 As a developer,
 I want to configure the Mich design system with shadcn/ui, brand colors, typography, and spacing tokens,
@@ -345,6 +349,8 @@ So that all future components use a consistent, premium brand identity.
 **And** focus state shows a gold outline ring (2px, 2px offset)
 
 ### Story 1.3: Core Layout & Responsive Navigation
+
+**Implements:** FR41, FR42
 
 As a visitor,
 I want to see a branded, navigable storefront with mobile bottom tabs and desktop top navigation,
@@ -382,6 +388,8 @@ So that I can easily move between sections of the site on any device.
 
 ### Story 1.4: Persistent WhatsApp CTA
 
+**Implements:** FR40
+
 As a visitor,
 I want to see a WhatsApp button on every page so I can instantly message the brand,
 So that I always have a one-tap path to human assistance.
@@ -413,6 +421,8 @@ So that I always have a one-tap path to human assistance.
 
 ### Story 1.5: Testing Foundation
 
+**Implements:** *(infrastructure — no direct FR)*
+
 As a developer,
 I want Vitest configured with co-located test patterns and basic test utilities,
 So that all future stories can include tests from the start.
@@ -438,11 +448,46 @@ So that all future stories can include tests from the start.
 **When** a developer creates a new component
 **Then** they can create a co-located `ComponentName.test.tsx` file that is automatically discovered by Vitest
 
+### Story 1.6: Shopify Admin Configuration & Metafield Schema
+
+**Implements:** FR49
+
+> **Moved from Epic 7 (was Story 7.1)** — This story is data infrastructure that must exist before Epics 2, 3, 5, and 6 can read/write metafields. Moved here to unblock downstream dependencies.
+
+As an operator,
+I want all custom metafield definitions configured in Shopify Admin,
+So that product nutrition data, delivery preferences, and order metadata are structured and manageable.
+
+**Acceptance Criteria:**
+
+**Given** the Shopify Admin for MitchWeb
+**When** metafield definitions are configured
+**Then** customer metafields are defined: `custom.delivery_day` (single-line text), `custom.customer_type` (single-line text), `custom.acquisition_channel` (single-line text)
+**And** product metafields are defined: `custom.macros_protein_g` (number), `custom.macros_fat_g` (number), `custom.macros_carbs_g` (number), `custom.is_keto_friendly` (boolean), `custom.shelf_life_days` (number)
+**And** order metafields are defined: `custom.delivery_day` (single-line text), `custom.source_channel` (single-line text)
+
+**Given** the metafield definitions are created
+**When** an operator opens a product in Shopify Admin
+**Then** the custom metafield fields are visible and editable (protein, fat, carbs, keto-friendly, shelf life)
+**And** the operator can enter nutritional data that will be displayed on the storefront
+
+**Given** the metafield definitions are created
+**When** an operator views a customer in Shopify Admin
+**Then** the delivery_day, customer_type, and acquisition_channel fields are visible
+**And** delivery_day updates when the customer selects a day on the storefront
+
+**Given** the operator manages products via Shopify Admin
+**When** they update product titles, descriptions, images, pricing, or inventory
+**Then** changes are reflected on the storefront via the Storefront API (subject to cache TTL)
+**And** no code deployment is needed for product content changes
+
 ## Epic 2: Product Discovery & Catalog
 
 Customers can browse, filter, and explore the full product catalog with rich product detail pages showing nutritional macros, keto badges, heritage storytelling, and real-time availability.
 
 ### Story 2.1: Product Catalog & Collection Pages
+
+**Implements:** FR1, FR3, FR5
 
 As a customer,
 I want to browse products organized by collection with images, names, prices, and product-line badges,
@@ -475,6 +520,8 @@ So that I can discover and explore the full Mich product range.
 **Then** Skeleton placeholders (cream-dark shimmer) are shown in the grid layout
 
 ### Story 2.2: Product Detail Page
+
+**Implements:** FR2, FR6
 
 As a customer,
 I want to view complete product information with beautiful photography, ingredients, description, and easy add-to-cart,
@@ -515,6 +562,8 @@ So that I can make an informed purchase decision and feel confident in the produ
 
 ### Story 2.3: Nutritional Macros & Keto Badges
 
+**Implements:** FR2 *(partial — macros/nutrition subset)*
+
 As a fitness/keto-conscious customer,
 I want to see nutritional macro data and keto-friendly badges on product pages,
 So that I can quickly assess whether a product fits my dietary goals.
@@ -546,6 +595,8 @@ So that I can quickly assess whether a product fits my dietary goals.
 **And** it verifies graceful handling of missing/malformed metafield data
 
 ### Story 2.4: Real-Time Inventory & Out-of-Stock States
+
+**Implements:** FR4
 
 As a customer,
 I want to see real-time product availability and clear messaging when items are out of stock,
@@ -580,6 +631,8 @@ So that I know what I can order and can be notified when unavailable products re
 **Then** availability uses Shopify Storefront API real-time inventory (short cache — 1-5 min)
 
 ### Story 2.5: Quick-Add to Cart & Product Search
+
+**Implements:** FR1 *(partial — search/browse)*
 
 As a customer,
 I want to quickly add products from the catalog without visiting each detail page, and search for specific products,
@@ -618,6 +671,8 @@ So that repeat purchases and product discovery are fast and effortless.
 Customers can build a cart, select their delivery day (martes/viernes), validate their delivery zone, and complete purchase via card, OXXO, or Shop Pay.
 
 ### Story 3.1: Cart Page & Cart Item Management
+
+**Implements:** FR7
 
 As a customer,
 I want to view my cart, adjust quantities, and remove items with instant feedback,
@@ -663,6 +718,8 @@ So that I can review and control my order before checkout.
 
 ### Story 3.2: Delivery Day Selection
 
+**Implements:** FR8
+
 As a customer,
 I want to choose my delivery day (martes or viernes) with a simple toggle,
 So that I receive my fresh artisanal products on a day that works for me.
@@ -699,11 +756,20 @@ So that I receive my fresh artisanal products on a day that works for me.
 
 ### Story 3.3: Delivery Zone Validation
 
+**Implements:** FR9, FR13
+
+> **Precondition:** This story creates the `DELIVERY_ZONES` constants in `/app/lib/constants.ts` as part of its implementation. Story 7.3 (Analytics & Zone Expansion Management) covers the operator-facing zone management workflow.
+
 As a customer,
 I want immediate feedback on whether my address is in the delivery zone,
 So that I know before checkout whether I can receive my order.
 
 **Acceptance Criteria:**
+
+**Given** the developer implements zone validation
+**When** the `DELIVERY_ZONES` array is created in `/app/lib/constants.ts`
+**Then** it contains the initial serviceable zones for Puebla/Cholula MVP
+**And** the data structure supports future expansion (city, postal codes, zone name)
 
 **Given** a customer on the cart page enters their delivery address
 **When** the address is in the serviceable zone (Puebla/Cholula MVP)
@@ -732,6 +798,8 @@ So that I know before checkout whether I can receive my order.
 **And** the WhatsApp CTA and notify signup are clearly labeled and focusable
 
 ### Story 3.4: Checkout & Payment Integration
+
+**Implements:** FR10, FR11, FR12, FR14
 
 As a customer,
 I want to complete my purchase with my preferred payment method through a fast, familiar checkout,
@@ -763,6 +831,8 @@ So that I can pay easily and trust the transaction.
 **And** "Pagar Ahora" is the single gold primary CTA on the cart page
 
 ### Story 3.5: Free Shipping Bar & Inventory Enforcement
+
+**Implements:** FR14 *(partial — shipping threshold)*
 
 As a customer,
 I want to see how close I am to free shipping and be confident that products shown as available can actually be purchased,
@@ -796,6 +866,8 @@ Visitors can read Michel's heritage story, browse the FAQ, and access legal/priv
 
 ### Story 4.1: Heritage Story Page (Nuestra Historia)
 
+**Implements:** FR38
+
 As a visitor,
 I want to read the authentic story of Michel and the Mich brand with real photography,
 So that I feel the craft and trust behind the products before making my first purchase.
@@ -825,6 +897,8 @@ So that I feel the craft and trust behind the products before making my first pu
 **And** heading hierarchy uses semantic HTML (`<article>`, `<section>`, `<h1>`-`<h3>`)
 
 ### Story 4.2: FAQ Page
+
+**Implements:** FR39
 
 As a visitor,
 I want to find answers to common questions about products, ordering, and delivery,
@@ -861,6 +935,8 @@ So that I can resolve doubts without needing to contact support.
 
 ### Story 4.3: Legal Pages & SEO Foundation
 
+**Implements:** *(compliance/SEO — no direct FR)*
+
 As a visitor,
 I want to access the privacy notice and legal policies, and as a brand I want search engines to properly index and display the site,
 So that legal compliance is met and organic discovery is maximized.
@@ -896,6 +972,8 @@ Customers can create an account, view order history/status, receive order confir
 
 ### Story 5.1: Customer Account & Order History
 
+**Implements:** FR15, FR16
+
 As a customer,
 I want to log into my account and view my order history with delivery day and status,
 So that I can track my purchases and prepare for upcoming deliveries.
@@ -929,6 +1007,8 @@ So that I can track my purchases and prepare for upcoming deliveries.
 **And** all text is in Mexican Spanish
 
 ### Story 5.2: Order Confirmation Webhook & WhatsApp Notification
+
+**Implements:** FR17
 
 As a customer,
 I want to receive immediate order confirmation via both email and WhatsApp after purchase,
@@ -968,6 +1048,8 @@ So that I have peace of mind that my order was received and know when to expect 
 
 ### Story 5.3: Post-Purchase Support via WhatsApp
 
+**Implements:** FR18
+
 As a customer,
 I want to easily contact support about an existing order via WhatsApp,
 So that I can resolve issues or ask questions without searching for contact information.
@@ -1001,6 +1083,8 @@ Customers can ask product questions, browse the catalog, check availability, and
 
 ### Story 6.1: OpenClaw Setup & Storefront MCP Integration
 
+**Implements:** FR19, FR20
+
 As a developer,
 I want to configure OpenClaw as a customer engagement gateway connected to Shopify via Storefront MCP,
 So that the AI sales agent can access real-time product, pricing, and inventory data to serve customers on WhatsApp.
@@ -1032,6 +1116,8 @@ So that the AI sales agent can access real-time product, pricing, and inventory 
 
 ### Story 6.2: Product Q&A & Catalog Browsing via WhatsApp
 
+**Implements:** FR21, FR22
+
 As a customer,
 I want to ask product questions and browse the catalog through WhatsApp with an AI agent that knows the products,
 So that I can get personalized recommendations and accurate information without visiting the website.
@@ -1062,6 +1148,8 @@ So that I can get personalized recommendations and accurate information without 
 
 ### Story 6.3: WhatsApp Order Placement & Checkout Links
 
+**Implements:** FR23, FR24
+
 As a customer,
 I want to build an order through WhatsApp conversation and receive a checkout link,
 So that I can purchase products without needing to visit the storefront directly.
@@ -1090,6 +1178,8 @@ So that I can purchase products without needing to visit the storefront directly
 
 ### Story 6.4: Human Escalation & Operator Summary
 
+**Implements:** FR25
+
 As an operator,
 I want the AI agent to escalate conversations it can't handle and receive daily summaries of all WhatsApp activity,
 So that no customer is left unserved and I have visibility into the sales channel.
@@ -1117,38 +1207,13 @@ So that no customer is left unserved and I have visibility into the sales channe
 
 ## Epic 7: Operations & Administration
 
-The operator can manage products, fulfill orders with delivery day visibility, configure delivery zones, and manage the storefront through Shopify Admin.
+The operator can fulfill orders with delivery day visibility, configure delivery zones, and track storefront performance via analytics through Shopify Admin.
 
-### Story 7.1: Shopify Admin Configuration & Metafield Schema
-
-As an operator,
-I want all custom metafield definitions configured in Shopify Admin,
-So that product nutrition data, delivery preferences, and order metadata are structured and manageable.
-
-**Acceptance Criteria:**
-
-**Given** the Shopify Admin for MitchWeb
-**When** metafield definitions are configured
-**Then** customer metafields are defined: `custom.delivery_day` (single-line text), `custom.customer_type` (single-line text), `custom.acquisition_channel` (single-line text)
-**And** product metafields are defined: `custom.macros_protein_g` (number), `custom.macros_fat_g` (number), `custom.macros_carbs_g` (number), `custom.is_keto_friendly` (boolean), `custom.shelf_life_days` (number)
-**And** order metafields are defined: `custom.delivery_day` (single-line text), `custom.source_channel` (single-line text)
-
-**Given** the metafield definitions are created
-**When** an operator opens a product in Shopify Admin
-**Then** the custom metafield fields are visible and editable (protein, fat, carbs, keto-friendly, shelf life)
-**And** the operator can enter nutritional data that will be displayed on the storefront
-
-**Given** the metafield definitions are created
-**When** an operator views a customer in Shopify Admin
-**Then** the delivery_day, customer_type, and acquisition_channel fields are visible
-**And** delivery_day updates when the customer selects a day on the storefront
-
-**Given** the operator manages products via Shopify Admin
-**When** they update product titles, descriptions, images, pricing, or inventory
-**Then** changes are reflected on the storefront via the Storefront API (subject to cache TTL)
-**And** no code deployment is needed for product content changes
+> **Note:** Story 7.1 (Shopify Admin Configuration & Metafield Schema) has been moved to Epic 1 as Story 1.6 to unblock downstream dependencies in Epics 2, 3, 5, and 6. See Story 1.6 for full details.
 
 ### Story 7.2: Order Fulfillment with Delivery Day Visibility
+
+**Implements:** FR50, FR51
 
 As an operator,
 I want to see delivery day and source channel on every order in Shopify Admin,
@@ -1172,18 +1237,21 @@ So that I can plan fulfillment by delivery day and understand which channel gene
 **Then** the source channel is clearly distinguishable
 **And** all order data (items, delivery day, customer info) is identical in structure to web orders
 
-### Story 7.3: Delivery Zone Management & Analytics
+### Story 7.3: Analytics & Zone Expansion Management
+
+**Implements:** FR53
+
+> **Note:** The initial `DELIVERY_ZONES` constants in `/app/lib/constants.ts` are created as part of Story 3.3 (Delivery Zone Validation), since zone validation depends on them. This story covers the operator-facing zone management workflow and GA4 analytics.
 
 As an operator,
-I want to manage serviceable delivery zones without code changes and track storefront performance via analytics,
-So that I can expand delivery areas and make data-driven decisions about the business.
+I want to track storefront performance via analytics and manage serviceable delivery zones for future expansion,
+So that I can make data-driven decisions and expand delivery areas without code changes.
 
 **Acceptance Criteria:**
 
-**Given** the delivery zone configuration
+**Given** the `DELIVERY_ZONES` array exists in `/app/lib/constants.ts` (created in Story 3.3)
 **When** the operator needs to add or modify serviceable zones
-**Then** zone data is managed via configurable constants in `/app/lib/constants.ts` (DELIVERY_ZONES array)
-**And** updating the zone list requires only a data change and redeployment (no logic changes)
+**Then** updating the zone list requires only a data change and redeployment (no logic changes)
 **And** the zone data structure supports future expansion beyond Puebla/Cholula
 
 **Given** the storefront is deployed

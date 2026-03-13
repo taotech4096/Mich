@@ -41,59 +41,60 @@ story_location: _bmad-output/implementation-artifacts
 
 development_status:
   # Epic 1: Branded Storefront Foundation
-  epic-1: in-progress
+  epic-1: done
   1-1-project-initialization-deployment-pipeline: done
   1-2-design-system-token-configuration: done
-  1-3-core-layout-responsive-navigation: in-progress
-  1-4-persistent-whatsapp-cta: backlog
-  1-5-testing-foundation: backlog
+  1-3-core-layout-responsive-navigation: done
+  1-4-persistent-whatsapp-cta: done
+  1-5-testing-foundation: done
+  1-6-shopify-admin-configuration-metafield-schema: done  # moved from Epic 7 (was 7-1) to unblock Epics 2, 3, 5, 6
   epic-1-retrospective: optional
 
   # Epic 2: Product Discovery & Catalog
-  epic-2: backlog
-  2-1-product-catalog-collection-pages: backlog
-  2-2-product-detail-page: backlog
-  2-3-nutritional-macros-keto-badges: backlog
-  2-4-real-time-inventory-out-of-stock-states: backlog
-  2-5-quick-add-to-cart-product-search: backlog
+  epic-2: done
+  2-1-product-catalog-collection-pages: done
+  2-2-product-detail-page: done
+  2-3-nutritional-macros-keto-badges: done
+  2-4-real-time-inventory-out-of-stock-states: done
+  2-5-quick-add-to-cart-product-search: done
   epic-2-retrospective: optional
 
   # Epic 3: Cart & Checkout
-  epic-3: backlog
-  3-1-cart-page-cart-item-management: backlog
-  3-2-delivery-day-selection: backlog
-  3-3-delivery-zone-validation: backlog
-  3-4-checkout-payment-integration: backlog
-  3-5-free-shipping-bar-inventory-enforcement: backlog
+  epic-3: done
+  3-1-cart-page-cart-item-management: done
+  3-2-delivery-day-selection: done
+  3-3-delivery-zone-validation: done
+  3-4-checkout-payment-integration: done
+  3-5-free-shipping-bar-inventory-enforcement: done
   epic-3-retrospective: optional
 
   # Epic 4: Brand & Content Experience
-  epic-4: backlog
-  4-1-heritage-story-page-nuestra-historia: backlog
-  4-2-faq-page: backlog
-  4-3-legal-pages-seo-foundation: backlog
+  epic-4: done
+  4-1-heritage-story-page-nuestra-historia: done
+  4-2-faq-page: done
+  4-3-legal-pages-seo-foundation: done
   epic-4-retrospective: optional
 
   # Epic 5: Customer Accounts & Post-Purchase
-  epic-5: backlog
-  5-1-customer-account-order-history: backlog
-  5-2-order-confirmation-webhook-whatsapp-notification: backlog
-  5-3-post-purchase-support-via-whatsapp: backlog
+  epic-5: done
+  5-1-customer-account-order-history: done
+  5-2-order-confirmation-webhook-whatsapp-notification: done
+  5-3-post-purchase-support-via-whatsapp: done
   epic-5-retrospective: optional
 
   # Epic 6: WhatsApp Conversational Commerce
-  epic-6: backlog
-  6-1-openclaw-setup-storefront-mcp-integration: backlog
-  6-2-product-qa-catalog-browsing-via-whatsapp: backlog
-  6-3-whatsapp-order-placement-checkout-links: backlog
-  6-4-human-escalation-operator-summary: backlog
+  epic-6: done
+  6-1-openclaw-setup-storefront-mcp-integration: done
+  6-2-product-qa-catalog-browsing-via-whatsapp: done
+  6-3-whatsapp-order-placement-checkout-links: done
+  6-4-human-escalation-operator-summary: done
   epic-6-retrospective: optional
 
   # Epic 7: Operations & Administration
-  epic-7: backlog
-  7-1-shopify-admin-configuration-metafield-schema: backlog
-  7-2-order-fulfillment-with-delivery-day-visibility: backlog
-  7-3-delivery-zone-management-analytics: backlog
+  epic-7: done
+  # Story 7-1 moved to Epic 1 as Story 1-6 (metafield schema is infrastructure, needed before Epics 2, 3, 5, 6)
+  7-2-order-fulfillment-with-delivery-day-visibility: done
+  7-3-analytics-zone-expansion-management: done  # renamed; initial DELIVERY_ZONES created in Story 3-3
   epic-7-retrospective: optional
 
   # Epic 8: Subscription Management (Phase 2)

@@ -511,18 +511,18 @@ The key architectural distinction: this is **not** a general-purpose e-commerce 
 
 ### Accessibility Level
 
-**Target: WCAG 2.1 Level A** (baseline, not AA)
+**Target: WCAG 2.1 Level AA**
 
-Pragmatic approach for MVP — full AA compliance is not required by Mexican law and would slow delivery. Focus on:
+Achieved pragmatically through shadcn/ui (Radix primitives), semantic HTML, and Tailwind design tokens — not through a separate compliance effort. Focus on:
 
-- **Semantic HTML**: Proper heading hierarchy, landmark regions, form labels
-- **Color contrast**: Minimum 4.5:1 for body text (the heritage color palette must be tested)
+- **Semantic HTML**: Proper heading hierarchy, landmark regions (`<nav>`, `<main>`, `<header>`, `<footer>`), form labels
+- **Color contrast**: Minimum 4.5:1 for body text, 3:1 for large text (heritage color palette verified in design tokens)
 - **Alt text**: All product images and brand imagery have meaningful alt text (also helps SEO)
-- **Keyboard navigation**: All interactive elements reachable via keyboard (Hydrogen components support this by default)
+- **Keyboard navigation**: All interactive elements reachable via keyboard (Radix UI primitives provide focus management by default)
 - **Form accessibility**: Error messages associated with fields, clear validation states
-- **Skip navigation**: Skip-to-content link for screen readers
-
-**Not in MVP scope:** Full WCAG AA, aria-live regions for dynamic content, comprehensive screen reader testing. Revisit in Growth phase if market expands to institutional/government buyers who may require accessibility compliance.
+- **Skip navigation**: Skip-to-content link ("Ir al contenido") as first focusable element
+- **Screen reader support**: ARIA roles/labels on interactive components, `role="alert"` for dynamic error states
+- **Motion safety**: `motion-safe:` prefix on all Tailwind animations
 
 ### Implementation Considerations
 

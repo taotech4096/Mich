@@ -278,7 +278,7 @@ This is not a traditional design system dependency. shadcn/ui components are cop
 | **Brand uniqueness** | Components are fully customizable via Tailwind. The warm Mediterranean premium aesthetic is achieved through design tokens (colors, typography, spacing), not fighting a library's defaults. |
 | **Single developer** | Reduces decision fatigue. Professional defaults for interactive patterns let you focus custom effort on the 5-6 brand-specific components. |
 | **Hydrogen compatibility** | Tailwind-native, works alongside Hydrogen's built-in components (`<Image>`, `<Money>`, `<Link>`) without conflict. |
-| **Accessibility** | Radix UI primitives provide WCAG-compliant keyboard navigation, focus management, and screen reader support. Meets the WCAG 2.1 Level A baseline from the PRD. |
+| **Accessibility** | Radix UI primitives provide WCAG-compliant keyboard navigation, focus management, and screen reader support. Meets the WCAG 2.1 Level AA target. |
 | **Component count** | MitchWeb needs ~12-15 components total. This is too small to justify a full design system, too large to build every interactive pattern from scratch. |
 
 ### Implementation Approach
@@ -525,7 +525,7 @@ Desktop scale: Headings increase ~25% at `md:` breakpoint. Body text stays the s
 
 ### Accessibility Considerations
 
-- All body text meets 4.5:1 contrast ratio (WCAG 2.1 Level A)
+- All body text meets 4.5:1 contrast ratio (WCAG 2.1 Level AA)
 - `gold` used for decorative/heading elements on dark backgrounds (3:1 minimum for large text) — never for small body text
 - Product line colors (green/blue) on white text verified at 4.5:1
 - Minimum touch target: 44x44px
