@@ -62,6 +62,11 @@ export function CartLineItem({
               <strong>{product.title}</strong>
             </p>
           </Link>
+          {(line as any).sellingPlanAllocation?.sellingPlan?.name && (
+            <p style={{fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.25rem'}}>
+              🔄 Suscripción — {(line as any).sellingPlanAllocation.sellingPlan.name}
+            </p>
+          )}
           <ProductPrice price={line?.cost?.totalAmount} />
           <ul>
             {selectedOptions.map((option) => (

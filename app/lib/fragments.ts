@@ -54,6 +54,12 @@ export const CART_QUERY_FRAGMENT = `#graphql
         }
       }
     }
+    sellingPlanAllocation {
+      sellingPlan {
+        id
+        name
+      }
+    }
     parentRelationship {
       parent {
         id

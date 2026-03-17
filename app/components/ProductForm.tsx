@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Link, useNavigate} from 'react-router';
 import {type MappedProductOptions} from '@shopify/hydrogen';
 import type {
@@ -6,21 +7,30 @@ import type {
 } from '@shopify/hydrogen/storefront-api-types';
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
+import {SubscriptionSelector, type SellingPlanGroupNode} from './SubscriptionSelector';
+import {SubscriptionWaitlistDialog} from './SubscriptionWaitlistDialog';
 import type {ProductFragment} from 'storefrontapi.generated';
 
 export function ProductForm({
   productOptions,
   selectedVariant,
+  sellingPlanGroups = [],
+  subscriptionAtCapacity = false,
 }: {
   productOptions: MappedProductOptions[];
   selectedVariant: ProductFragment['selectedOrFirstAvailableVariant'];
+  sellingPlanGroups?: SellingPlanGroupNode[];
+  subscriptionAtCapacity?: boolean;
 }) {
   const navigate = useNavigate();
   const {open} = useAside();
+  const [selectedSellingPlanId, setSelectedSellingPlanId] = useState<string | null>(null);
+
+  const hasSellingPlans = sellingPlanGroups.length > 0;
+
   return (
     <div className="product-form">
       {productOptions.map((option) => {
-        // If there is only a single value in the option values, don't display the option
         if (option.optionValues.length === 1) return null;
 
         return (
@@ -40,10 +50,6 @@ export function ProductForm({
                 } = value;
 
                 if (isDifferentProduct) {
-                  // SEO
-                  // When the variant is a combined listing child product
-                  // that leads to a different url, we need to render it
-                  // as an anchor tag
                   return (
                     <Link
                       className="product-options-item"
@@ -63,11 +69,6 @@ export function ProductForm({
                     </Link>
                   );
                 } else {
-                  // SEO
-                  // When the variant is an update to the search param,
-                  // render it as a button with javascript navigating to
-                  // the variant so that SEO bots do not index these as
-                  // duplicated links
                   return (
                     <button
                       type="button"
@@ -101,6 +102,21 @@ export function ProductForm({
           </div>
         );
       })}
+
+      {/* Subscription section: show waitlist dialog when at capacity, selector otherwise */}
+      {hasSellingPlans && (
+        <div className="subscription-section" style={{marginBottom: '1rem'}}>
+          {subscriptionAtCapacity ? (
+            <SubscriptionWaitlistDialog />
+          ) : (
+            <SubscriptionSelector
+              sellingPlanGroups={sellingPlanGroups}
+              onSellingPlanChange={setSelectedSellingPlanId}
+            />
+          )}
+        </div>
+      )}
+
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
@@ -112,6 +128,7 @@ export function ProductForm({
                 {
                   merchandiseId: selectedVariant.id,
                   quantity: 1,
+                  sellingPlanId: selectedSellingPlanId ?? undefined,
                   selectedVariant,
                 },
               ]
