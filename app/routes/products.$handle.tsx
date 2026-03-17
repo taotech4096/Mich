@@ -1,4 +1,4 @@
-import {redirect, useLoaderData} from 'react-router';
+import {data, redirect, useLoaderData} from 'react-router';
 import type {Route} from './+types/products.$handle';
 import {
   getSelectedProductOptions,
@@ -23,20 +23,48 @@ export const meta: Route.MetaFunction = ({data}) => {
   ];
 };
 
+export async function action({request, context}: Route.ActionArgs) {
+  const formData = await request.formData();
+  const intent = formData.get('intent');
+
+  if (intent === 'waitlist') {
+    const email = formData.get('email') as string;
+    const whatsapp = formData.get('whatsapp') as string;
+
+    if (!email && !whatsapp) {
+      return data({waitlistError: 'Ingresa tu email o número de WhatsApp'}, {status: 400});
+    }
+
+    // If customer is logged in, write to customer metafields via Customer Account API
+    // For now, store contact info in session or just return success
+    // Full customer metafield write is handled when customer account session is available
+    const contact = email || whatsapp;
+
+    try {
+      // Attempt to write to customer metafields if logged in
+      const customerAccount = context.customerAccount;
+      if (customerAccount) {
+        const {isLoggedIn} = await customerAccount.isLoggedIn();
+        if (isLoggedIn) {
+          // Customer metafield update would go here via Customer Account API
+          // Deferred to Story 8.2 for full enrollment flow
+        }
+      }
+      return data({waitlistSuccess: true, contact});
+    } catch {
+      return data({waitlistSuccess: true, contact});
+    }
+  }
+
+  return data({});
+}
+
 export async function loader(args: Route.LoaderArgs) {
-  // Start fetching non-critical data without blocking time to first byte
   const deferredData = loadDeferredData(args);
-
-  // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
-
   return {...deferredData, ...criticalData};
 }
 
-/**
- * Load data necessary for rendering content above the fold. This is the critical data
- * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
- */
 async function loadCriticalData({context, params, request}: Route.LoaderArgs) {
   const {handle} = params;
   const {storefront} = context;
@@ -45,57 +73,50 @@ async function loadCriticalData({context, params, request}: Route.LoaderArgs) {
     throw new Error('Expected product handle to be defined');
   }
 
-  const [{product}] = await Promise.all([
+  const [{product}, shopCapacity] = await Promise.all([
     storefront.query(PRODUCT_QUERY, {
       variables: {handle, selectedOptions: getSelectedProductOptions(request)},
     }),
-    // Add other queries here, so that they are loaded in parallel
+    storefront.query(SHOP_CAPACITY_QUERY),
   ]);
 
   if (!product?.id) {
     throw new Response(null, {status: 404});
   }
 
-  // The API handle might be localized, so redirect to the localized handle
   redirectIfHandleIsLocalized(request, {handle, data: product});
+
+  const capacityMax = parseInt(shopCapacity?.shop?.capacityMax?.value ?? '150', 10);
+  const capacityCurrent = parseInt(shopCapacity?.shop?.capacityCurrent?.value ?? '0', 10);
+  const subscriptionAtCapacity = capacityCurrent >= capacityMax;
 
   return {
     product,
+    subscriptionAtCapacity,
   };
 }
 
-/**
- * Load data for rendering content below the fold. This data is deferred and will be
- * fetched after the initial page load. If it's unavailable, the page should still 200.
- * Make sure to not throw any errors here, as it will cause the page to 500.
- */
 function loadDeferredData({context, params}: Route.LoaderArgs) {
-  // Put any API calls that is not critical to be available on first page render
-  // For example: product reviews, product recommendations, social feeds.
-
   return {};
 }
 
 export default function Product() {
-  const {product} = useLoaderData<typeof loader>();
+  const {product, subscriptionAtCapacity} = useLoaderData<typeof loader>();
 
-  // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
     product.selectedOrFirstAvailableVariant,
     getAdjacentAndFirstAvailableVariants(product),
   );
 
-  // Sets the search param to the selected variant without navigation
-  // only when no search params are set in the url
   useSelectedOptionInUrlParam(selectedVariant.selectedOptions);
 
-  // Get the product options array
   const productOptions = getProductOptions({
     ...product,
     selectedOrFirstAvailableVariant: selectedVariant,
   });
 
   const {title, descriptionHtml} = product;
+  const sellingPlanGroups = product.sellingPlanGroups?.nodes ?? [];
 
   return (
     <div className="product">
@@ -110,6 +131,8 @@ export default function Product() {
         <ProductForm
           productOptions={productOptions}
           selectedVariant={selectedVariant}
+          sellingPlanGroups={sellingPlanGroups}
+          subscriptionAtCapacity={subscriptionAtCapacity}
         />
         <br />
         <br />
@@ -138,6 +161,8 @@ export default function Product() {
     </div>
   );
 }
+
+// ── GraphQL Fragments & Queries ──────────────────────────────────────
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
   fragment ProductVariant on ProductVariant {
@@ -172,6 +197,25 @@ const PRODUCT_VARIANT_FRAGMENT = `#graphql
     unitPrice {
       amount
       currencyCode
+    }
+  }
+` as const;
+
+const SELLING_PLAN_FRAGMENT = `#graphql
+  fragment SellingPlanFragment on SellingPlan {
+    id
+    name
+    description
+    recurringDeliveries
+    options { name value }
+    priceAdjustments {
+      orderCount
+      adjustmentValue {
+        ... on SellingPlanPercentagePriceAdjustment { adjustmentPercentage }
+        ... on SellingPlanFixedAmountPriceAdjustment {
+          adjustmentAmount { amount currencyCode }
+        }
+      }
     }
   }
 ` as const;
@@ -213,8 +257,19 @@ const PRODUCT_FRAGMENT = `#graphql
       description
       title
     }
+    sellingPlanGroups(first: 10) {
+      nodes {
+        name
+        sellingPlans(first: 10) {
+          nodes {
+            ...SellingPlanFragment
+          }
+        }
+      }
+    }
   }
   ${PRODUCT_VARIANT_FRAGMENT}
+  ${SELLING_PLAN_FRAGMENT}
 ` as const;
 
 const PRODUCT_QUERY = `#graphql
@@ -229,4 +284,13 @@ const PRODUCT_QUERY = `#graphql
     }
   }
   ${PRODUCT_FRAGMENT}
+` as const;
+
+const SHOP_CAPACITY_QUERY = `#graphql
+  query ShopSubscriptionCapacity {
+    shop {
+      capacityMax: metafield(namespace: "custom", key: "subscription_capacity_max") { value }
+      capacityCurrent: metafield(namespace: "custom", key: "subscription_capacity_current") { value }
+    }
+  }
 ` as const;
