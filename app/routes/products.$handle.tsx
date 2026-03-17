@@ -44,8 +44,8 @@ export async function action({request, context}: Route.ActionArgs) {
       // Attempt to write to customer metafields if logged in
       const customerAccount = context.customerAccount;
       if (customerAccount) {
-        const {isLoggedIn} = await customerAccount.isLoggedIn();
-        if (isLoggedIn) {
+        const loggedIn = await customerAccount.isLoggedIn();
+        if (loggedIn) {
           // Customer metafield update would go here via Customer Account API
           // Deferred to Story 8.2 for full enrollment flow
         }

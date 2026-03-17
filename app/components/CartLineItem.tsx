@@ -62,9 +62,9 @@ export function CartLineItem({
               <strong>{product.title}</strong>
             </p>
           </Link>
-          {line.sellingPlanAllocation?.sellingPlan?.name && (
+          {(line as any).sellingPlanAllocation?.sellingPlan?.name && (
             <p style={{fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.25rem'}}>
-              🔄 Suscripción — {line.sellingPlanAllocation.sellingPlan.name}
+              🔄 Suscripción — {(line as any).sellingPlanAllocation.sellingPlan.name}
             </p>
           )}
           <ProductPrice price={line?.cost?.totalAmount} />
