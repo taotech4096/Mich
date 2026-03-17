@@ -163,9 +163,6 @@ export default [
     settings: {
       'import/internal-regex': '^~/',
       'import/resolvers': {
-        node: {
-          extensions: ['.ts', '.tsx'],
-        },
         typescript: {
           alwaysTryTypes: true,
           project: __dirname,
@@ -230,6 +227,11 @@ export default [
     files: ['**/*.test.*'],
     plugins: {
       jest,
+    },
+    settings: {
+      jest: {
+        version: 29,
+      },
     },
     languageOptions: {
       globals: {
