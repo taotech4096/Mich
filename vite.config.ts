@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import {defineConfig} from 'vite';
 import {hydrogen} from '@shopify/hydrogen/vite';
 import {oxygen} from '@shopify/mini-oxygen/vite';
@@ -7,9 +6,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  test: {
-    environment: 'jsdom',
-  },
   plugins: [
     tailwindcss(),
     hydrogen(),
