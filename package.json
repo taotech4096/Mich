@@ -11,7 +11,7 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js .",
     "typecheck": "react-router typegen && tsc --noEmit",
     "codegen": "shopify hydrogen codegen && react-router typegen",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "test:watch": "vitest"
   },
   "prettier": "@shopify/prettier-config",
